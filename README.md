@@ -1,1 +1,1 @@
-# Hotel Smart_Booking_API
+# Smart_Hotel_Booking_API
