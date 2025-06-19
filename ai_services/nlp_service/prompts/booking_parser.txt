@@ -1,0 +1,13 @@
+Booking Parser Prompts
+
+Please provide your booking details in the following format:
+
+1. **Booking Type**: Specify whether it's a hotel, flight, or car rental.
+2. **Location**: Mention the city or destination.
+3. **Check-in Date**: Provide the date in YYYY-MM-DD format.
+4. **Check-out Date**: Provide the date in YYYY-MM-DD format (if applicable).
+5. **Number of Guests**: Indicate how many people will be staying or traveling.
+6. **Preferences**: List any specific preferences (e.g., non-smoking room, window seat).
+
+Example Input:
+- "I want to book a hotel in New York from 2023-12-01 to 2023-12-05 for 2 guests, with a preference for a non-smoking room."

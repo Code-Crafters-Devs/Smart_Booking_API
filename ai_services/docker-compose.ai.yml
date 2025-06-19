@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  scheduling_service:
+    build:
+      context: ./scheduling_service
+      dockerfile: Dockerfile
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./scheduling_service:/app
+    networks:
+      - ai_network
+
+  nlp_service:
+    build:
+      context: ./nlp_service
+      dockerfile: Dockerfile
+    ports:
+      - "5001:5001"
+    volumes:
+      - ./nlp_service:/app
+    networks:
+      - ai_network
+
+networks:
+  ai_network:
+    driver: bridge
