@@ -5,7 +5,8 @@ const LoginPage = () => {
   const [formData, setFormData] = useState({
     email: '',
     password: '',
-    confirmPassword: ''
+    confirmPassword: '',
+    role: 'Guest' // default role
   });
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
@@ -428,14 +429,51 @@ const LoginPage = () => {
   }
 
   return (
-    <div style={styles.container}>
+    <div style={{
+      ...styles.container,
+      flexDirection: 'row',
+      justifyContent: 'center',
+      alignItems: 'center',
+      gap: '40px',
+    }}>
       <style>{keyframes}</style>
-      
       <div style={styles.backgroundElements}>
         <div style={styles.bgCircle1}></div>
         <div style={styles.bgCircle2}></div>
       </div>
-
+      {/* Role Explanation Section */}
+      <div
+        style={{
+          minWidth: 0,
+          maxWidth: '320px',
+          background: 'rgba(255,255,255,0.08)',
+          borderRadius: '20px',
+          padding: '32px 24px',
+          marginRight: '100px', // increased from '0' to '32px'
+          color: '#e0e7ef',
+          boxShadow: '0 8px 32px rgba(0,0,0,0.10)',
+          display: 'flex',
+          flexDirection: 'column',
+          gap: '24px',
+          fontSize: '15px',
+          fontFamily: 'inherit',
+          border: '1px solid rgba(255,255,255,0.13)',
+          backdropFilter: 'blur(10px)',
+          marginBottom: '20px',
+        }}
+        className="role-explanation"
+      >
+        <h3 style={{fontSize: '20px', fontWeight: 700, marginBottom: '12px', color: '#c084fc'}}>Which Role Should I Choose?</h3>
+        <div>
+          <strong style={{color: '#60a5fa'}}>Guest:</strong>
+          <div style={{marginLeft: '8px', marginTop: '4px'}}>Book hotels, manage your reservations, and enjoy personalized recommendations. Choose this if you are looking to book a stay.</div>
+        </div>
+        <div>
+          <strong style={{color: '#a855f7'}}>Provider:</strong>
+          <div style={{marginLeft: '8px', marginTop: '4px'}}>List and manage your properties, view bookings, and connect with guests. Choose this if you own or manage a hotel/property.</div>
+        </div>
+      </div>
+      {/* Form Container */}
       <div style={styles.formContainer} className="form-container">
         <div style={styles.header}>
           <div style={styles.logo}>
@@ -451,6 +489,29 @@ const LoginPage = () => {
         </div>
 
         <div style={styles.form}>
+          {/* Role Dropdown */}
+          <div style={styles.inputGroup}>
+            <label style={styles.label}>Role</label>
+            <div style={styles.inputContainer}>
+              <select
+                name="role"
+                value={formData.role}
+                onChange={handleInputChange}
+                style={{
+                  ...styles.input,
+                  paddingLeft: '16px',
+                  appearance: 'none',
+                  color: 'white',
+                  background: 'rgba(255,255,255,0.1)'
+                }}
+                className="input"
+              >
+                <option value="Guest">Guest</option>
+                <option value="Provider">Provider</option>
+              </select>
+            </div>
+          </div>
+
           <div style={styles.inputGroup}>
             <label style={styles.label}>Email Address</label>
             <div style={styles.inputContainer}>
