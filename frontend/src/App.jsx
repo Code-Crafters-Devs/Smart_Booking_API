@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
 import { BookingProvider } from './context/BookingContext';
-import Home from './pages/Home';
+import Home from './pages/GuestHome';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Profile from './pages/Profile';

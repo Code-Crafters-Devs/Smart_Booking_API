@@ -241,11 +241,12 @@ top: '50%',
 transform: 'translateY(-50%)',
 color: '#94a3b8',
 width: '16px', // reduced
-height: '16px' // reduced
+height: '16px', // reduced
+pointerEvents: 'none' // ensure icon does not block input clicks
 },
 input: {
 width: '100%',
-padding: '8px 8px 8px 32px', // reduced
+padding: '8px 8px 8px 36px', // increased left padding for icon
 background: 'rgba(255, 255, 255, 0.2)',
 borderRadius: '8px', // reduced
 border: '1px solid rgba(255, 255, 255, 0.3)',
