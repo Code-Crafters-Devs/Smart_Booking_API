@@ -241,12 +241,11 @@ top: '50%',
 transform: 'translateY(-50%)',
 color: '#94a3b8',
 width: '16px', // reduced
-height: '16px', // reduced
-pointerEvents: 'none' // ensure icon does not block input clicks
+height: '16px' // reduced
 },
 input: {
 width: '100%',
-padding: '8px 8px 8px 36px', // increased left padding for icon
+padding: '8px 8px 8px 32px', // reduced
 background: 'rgba(255, 255, 255, 0.2)',
 borderRadius: '8px', // reduced
 border: '1px solid rgba(255, 255, 255, 0.3)',
@@ -576,67 +575,92 @@ Sign Up
 
 {/* Hero Section */}
 <section style={styles.heroSection}>
-<div style={styles.heroContent}>
-<div style={styles.heroInner}>
-<h1 style={styles.heroTitle} className="hero-title">
-Smart Hotel Booking
-<br />
-<span style={styles.heroTitleAccent}>
-Reimagined
-</span>
-</h1>
-<p style={styles.heroSubtitle} className="hero-subtitle">
-Discover, book, and enjoy extraordinary stays with our AI-powered platform.
-From boutique hotels to luxury resorts, find your perfect match instantly.
-</p>
+    <div style={styles.heroContent}>
+        <div style={styles.heroInner}>
+            <h1 style={styles.heroTitle} className="hero-title">
+                Smart Hotel Booking
+                <br />
+                <span style={styles.heroTitleAccent}>
+                    Reimagined
+                </span>
+            </h1>
+            <p style={styles.heroSubtitle} className="hero-subtitle">
+                Discover, book, and enjoy extraordinary stays with our AI-powered platform.
+                From boutique hotels to luxury resorts, find your perfect match instantly.
+            </p>
 
-{/* Search Bar */}
-<div style={styles.searchContainer}>
-<div style={styles.searchBox}>
-<div style={styles.searchGrid} className="search-grid">
-<div style={styles.inputGroup}>
-<MapPin style={styles.inputIcon} />
-<input
-type="text"
-placeholder="Where to?"
-style={styles.input}
-className="input"
-/>
-</div>
-<div style={styles.inputGroup}>
-<Calendar style={styles.inputIcon} />
-<input
-type="date"
-style={styles.input}
-className="input"
-/>
-</div>
-<div style={styles.inputGroup}>
-<Calendar style={styles.inputIcon} />
-<input
-type="date"
-style={styles.input}
-className="input"
-/>
-</div>
-<div style={styles.inputGroup}>
-<Users style={styles.inputIcon} />
-<select style={styles.input} className="input">
-<option>2 Guests</option>
-<option>1 Guest</option>
-<option>3 Guests</option>
-<option>4+ Guests</option>
-</select>
-</div>
-</div>
-<button style={styles.searchBtn} className="search-btn">
-<Search style={{ width: '20px', height: '20px' }} />
-<span>Search Hotels</span>
-</button>
-</div>
-</div>
+            {/* Vertical Search Bar */}
+                        <div style={{ ...styles.searchContainer, maxWidth: 400 }}>
+                            <div style={{ 
+                                ...styles.searchBox, 
+                                display: 'flex', 
+                                flexDirection: 'column', 
+                                gap: '12px' 
+                            }}>
+                                <label style={{ color: '#cbd5e1', marginBottom: '4px', fontSize: '14px', fontWeight: 500 }}>
+                                    Location
+                                </label>
+                                <div style={{ ...styles.inputGroup, width: '90%' }}>
+                                    <MapPin style={styles.inputIcon} />
+                                    <input
+                                        type="text"
+                                        placeholder="Where to?"
+                                        style={styles.input}
+                                        className="input"
+                                    />
+                                </div>
 
-{/* CTA Buttons */}
+                                <label style={{ color: '#cbd5e1', marginBottom: '4px', fontSize: '14px', fontWeight: 500 }}>
+                                    Check-in Date
+                                </label>
+                                <div style={{ ...styles.inputGroup, width: '90%' }}>
+                                    <Calendar style={styles.inputIcon} />
+                                    <input
+                                        type="date"
+                                        style={styles.input}
+                                        className="input"
+                                    />
+                                </div>
+
+                                <label style={{ color: '#cbd5e1', marginBottom: '4px', fontSize: '14px', fontWeight: 500 }}>
+                                    Check-out Date
+                                </label>
+                                <div style={{ ...styles.inputGroup, width: '90%' }}>
+                                    <Calendar style={styles.inputIcon} />
+                                    <input
+                                        type="date"
+                                        style={styles.input}
+                                        className="input"
+                                    />
+                                </div>
+
+                                <label style={{ color: '#cbd5e1', marginBottom: '4px', fontSize: '14px', fontWeight: 500 }}>
+                                    No of Guests
+                                </label>
+                                <div style={{ ...styles.inputGroup, width: '100%' }}>
+                                    <Users style={styles.inputIcon} />
+                                    <select
+                                        style={{
+                                            ...styles.input,
+                                            background: 'rgba(33, 1, 64, 0.9)', // dark background for visibility
+                                            color: 'white'
+                                        }}
+                                        className="input"
+                                    >
+                                        <option>2 Guests</option>
+                                        <option>1 Guest</option>
+                                        <option>3 Guests</option>
+                                        <option>4+ Guests</option>
+                                    </select>
+                                </div>
+                                <button style={{ ...styles.searchBtn, marginTop: 0 }} className="search-btn">
+                                    <Search style={{ width: '20px', height: '20px' }} />
+                                   <span>Search Hotels</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        {/* CTA Buttons */}
 <div style={styles.ctaButtons} className="cta-buttons">
 <button style={styles.primaryBtn} className="primary-btn">
 <span>Get Started</span>
