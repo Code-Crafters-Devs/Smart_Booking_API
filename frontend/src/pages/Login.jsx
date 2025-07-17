@@ -4,7 +4,8 @@ import { Mail, Lock, Eye, EyeOff, ArrowLeft, AlertCircle } from 'lucide-react';
 const Login = () => {
   const [formData, setFormData] = useState({
     email: '',
-    password: ''
+    password: '',
+    role: 'Guest'
   });
   const [showPassword, setShowPassword] = useState(false);
   const [showForgotPassword, setShowForgotPassword] = useState(false);
@@ -46,22 +47,24 @@ const Login = () => {
   const styles = {
     container: {
       minHeight: '100vh',
-      background: 'linear-gradient(135deg, #0f172a 0%, #581c87 50%, #0f172a 100%)',
+      background: 'url(https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80) no-repeat center center fixed',
+      backgroundSize: 'cover',
       color: 'white',
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
-      padding: '20px'
+      padding: '80px 20px 20px',
+      fontFamily: 'system-ui, -apple-system, sans-serif'
     },
     formContainer: {
       width: '100%',
       maxWidth: '400px',
-      background: 'rgba(255, 255, 255, 0.1)',
-      backdropFilter: 'blur(20px)',
+      background: 'rgba(15, 23, 42, 0.85)',
+      backdropFilter: 'blur(8px)',
       borderRadius: '24px',
       border: '1px solid rgba(255, 255, 255, 0.2)',
       padding: '40px',
-      boxShadow: '0 25px 50px rgba(0, 0, 0, 0.25)'
+      boxShadow: '0 25px 50px rgba(0, 0, 0, 0.3)'
     },
     header: {
       textAlign: 'center',
@@ -72,38 +75,132 @@ const Login = () => {
       fontWeight: 'bold',
       marginBottom: '8px'
     },
+    inputGroup: {
+      marginBottom: '20px',
+      width: '100%'
+    },
+    inputContainer: {
+      position: 'relative',
+      width: '100%'
+    },
     input: {
-      width: '90%',
+      width: '100%',
       padding: '16px 16px 16px 48px',
-      background: 'rgba(255, 255, 255, 0.1)',
+      background: 'rgba(255, 255, 255, 0.15)',
       borderRadius: '12px',
       border: '1px solid rgba(255, 255, 255, 0.2)',
       color: 'white',
-      fontSize: '16px'
+      fontSize: '16px',
+      boxSizing: 'border-box',
+      transition: 'all 0.3s ease',
+      '&:focus': {
+        background: 'rgba(255, 255, 255, 0.25)',
+        borderColor: '#a855f7',
+        outline: 'none'
+      }
+    },
+    select: {
+      width: '100%',
+      padding: '16px 16px 16px 48px',
+      background: 'rgba(255, 255, 255, 0.15)',
+      borderRadius: '12px',
+      border: '1px solid rgba(255, 255, 255, 0.2)',
+      color: 'white',
+      fontSize: '16px',
+      appearance: 'none',
+      cursor: 'pointer',
+      boxSizing: 'border-box'
+    },
+    inputIcon: {
+      position: 'absolute',
+      left: '16px',
+      top: '50%',
+      transform: 'translateY(-50%)',
+      pointerEvents: 'none',
+      color: 'rgba(255, 255, 255, 0.7)'
+    },
+    eyeIcon: {
+      position: 'absolute',
+      right: '16px',
+      top: '50%',
+      transform: 'translateY(-50%)',
+      cursor: 'pointer',
+      color: 'rgba(255, 255, 255, 0.7)'
     },
     submitBtn: {
       width: '100%',
       padding: '16px',
-      background: 'linear-gradient(45deg, #a855f7, #3b82f6)',
+      background: 'linear-gradient(45deg, #3b82f6, #a855f7)',
       border: 'none',
       borderRadius: '12px',
       color: 'white',
       fontSize: '16px',
       fontWeight: '600',
       cursor: 'pointer',
-      marginTop: '8px'
+      marginTop: '8px',
+      transition: 'all 0.3s ease',
+      '&:hover': {
+        transform: 'translateY(-2px)',
+        boxShadow: '0 10px 20px rgba(0, 0, 0, 0.2)'
+      }
     },
     link: {
       color: '#c084fc',
-      cursor: 'pointer'
+      cursor: 'pointer',
+      textAlign: 'center',
+      display: 'block',
+      marginTop: '20px',
+      transition: 'color 0.3s ease',
+      '&:hover': {
+        color: '#a855f7'
+      }
+    },
+    error: {
+      color: '#ef4444',
+      fontSize: '12px',
+      marginTop: '4px',
+      display: 'flex',
+      alignItems: 'center',
+      gap: '4px'
     }
   };
+
+  const keyframes = `
+    @keyframes pulse {
+      0%, 100% { opacity: 0.2; }
+      50% { opacity: 0.4; }
+    }
+
+    .submit-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .link:hover {
+      color: #a855f7 !important;
+    }
+
+    .input:focus {
+      border-color: #a855f7 !important;
+    }
+  `;
 
   if (showForgotPassword) {
     return (
       <div style={styles.container}>
         <div style={styles.formContainer}>
-          <button onClick={() => setShowForgotPassword(false)} style={{ color: '#c084fc', background: 'none', border: 'none', cursor: 'pointer' }}>
+          <button 
+            onClick={() => setShowForgotPassword(false)} 
+            style={{ 
+              color: '#c084fc', 
+              background: 'none', 
+              border: 'none', 
+              cursor: 'pointer',
+              display: 'flex',
+              alignItems: 'center',
+              marginBottom: '20px'
+            }}
+          >
             <ArrowLeft size={16} style={{ marginRight: '8px' }} />
             Back to Login
           </button>
@@ -114,10 +211,10 @@ const Login = () => {
           </div>
 
           <form onSubmit={handleForgotPassword}>
-            <div style={{ marginBottom: '20px' }}>
-              <label style={{ display: 'block', marginBottom: '8px' }}>Email Address</label>
-              <div style={{ position: 'relative' }}>
-                <Mail size={20} style={{ position: 'absolute', left: '16px', top: '16px' }} />
+            <div style={styles.inputGroup}>
+              <label style={{ display: 'block', marginBottom: '8px', fontSize: '14px', fontWeight: '500' }}>Email Address</label>
+              <div style={styles.inputContainer}>
+                <Mail size={20} style={styles.inputIcon} />
                 <input
                   type="email"
                   name="email"
@@ -128,8 +225,8 @@ const Login = () => {
                 />
               </div>
               {errors.email && (
-                <div style={{ color: '#ef4444', fontSize: '12px', marginTop: '4px' }}>
-                  <AlertCircle size={12} style={{ marginRight: '4px' }} />
+                <div style={styles.error}>
+                  <AlertCircle size={12} />
                   {errors.email}
                 </div>
               )}
@@ -146,6 +243,7 @@ const Login = () => {
 
   return (
     <div style={styles.container}>
+      <style>{keyframes}</style>
       <div style={styles.formContainer}>
         <div style={styles.header}>
           <h2 style={styles.title}>Welcome Back</h2>
@@ -153,53 +251,54 @@ const Login = () => {
         </div>
 
         <form onSubmit={handleSubmit}>
-            <div style={{ marginBottom: '20px' }}>
-            <label style={{ display: 'block', marginBottom: '8px' }}>Role</label>
-            <div style={{ position: 'relative' }}>
+          <div style={styles.inputGroup}>
+            <label style={{ display: 'block', marginBottom: '8px', fontSize: '14px', fontWeight: '500' }}>Role</label>
+            <div style={styles.inputContainer}>
+              <svg
+                style={styles.inputIcon}
+                viewBox="0 0 24 24"
+                width="20"
+                height="20"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+              >
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+              </svg>
               <select
                 name="role"
                 value={formData.role}
                 onChange={handleInputChange}
-                style={{
-                  width: '100%',
-                  padding: '8px 8px 8px 32px',
-                  background: 'rgba(48, 2, 86, 0.2)',
-                  borderRadius: '8px',
-                  border: '1px solid rgba(255, 255, 255, 0.3)',
-                  color: 'white',
-                  fontSize: '14px',
-                  outline: 'none',
-                  transition: 'border-color 0.3s ease',
-                  appearance: 'none',
-                  boxSizing: 'border-box',
-                }}
-                className="input"
+                style={styles.select}
               >
                 <option value="Guest">Guest</option>
                 <option value="Provider">Provider</option>
               </select>
-              {/* Dropdown icon */}
-              <svg style={{
-                position: 'absolute',
-                right: '12px',
-                top: '50%',
-                transform: 'translateY(-50%)',
-                pointerEvents: 'none',
-                width: 18,
-                height: 18,
-                fill: 'none',
-                stroke: '#fafafaff',
-                strokeWidth: 2
-              }} viewBox="0 0 24 24">
-                <path d="M6 9l6 6 6-6" strokeLinecap="round" strokeLinejoin="round" />
+              <svg
+                style={{
+                  position: 'absolute',
+                  right: '16px',
+                  top: '50%',
+                  transform: 'translateY(-50%)',
+                  pointerEvents: 'none',
+                  color: 'rgba(255, 255, 255, 0.7)'
+                }}
+                viewBox="0 0 24 24"
+                width="20"
+                height="20"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+              >
+                <path d="M6 9l6 6 6-6" />
               </svg>
             </div>
           </div>
 
-          <div style={{ marginBottom: '20px' }}>
-            <label style={{ display: 'block', marginBottom: '8px' }}>Email Address</label>
-            <div style={{ position: 'relative' }}>
-              <Mail size={20} style={{ position: 'absolute', left: '16px', top: '16px' }} />
+          <div style={styles.inputGroup}>
+            <label style={{ display: 'block', marginBottom: '8px', fontSize: '14px', fontWeight: '500' }}>Email Address</label>
+            <div style={styles.inputContainer}>
+              <Mail size={20} style={styles.inputIcon} />
               <input
                 type="email"
                 name="email"
@@ -210,17 +309,17 @@ const Login = () => {
               />
             </div>
             {errors.email && (
-              <div style={{ color: '#ef4444', fontSize: '12px', marginTop: '4px' }}>
-                <AlertCircle size={12} style={{ marginRight: '4px' }} />
+              <div style={styles.error}>
+                <AlertCircle size={12} />
                 {errors.email}
               </div>
             )}
           </div>
 
-          <div style={{ marginBottom: '20px' }}>
-            <label style={{ display: 'block', marginBottom: '8px' }}>Password</label>
-            <div style={{ position: 'relative' }}>
-              <Lock size={20} style={{ position: 'absolute', left: '16px', top: '16px' }} />
+          <div style={styles.inputGroup}>
+            <label style={{ display: 'block', marginBottom: '8px', fontSize: '14px', fontWeight: '500' }}>Password</label>
+            <div style={styles.inputContainer}>
+              <Lock size={20} style={styles.inputIcon} />
               <input
                 type={showPassword ? 'text' : 'password'}
                 name="password"
@@ -229,13 +328,16 @@ const Login = () => {
                 placeholder="Enter your password"
                 style={styles.input}
               />
-              <div onClick={() => setShowPassword(!showPassword)} style={{ position: 'absolute', right: '16px', top: '16px', cursor: 'pointer' }}>
+              <div 
+                onClick={() => setShowPassword(!showPassword)} 
+                style={styles.eyeIcon}
+              >
                 {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
               </div>
             </div>
             {errors.password && (
-              <div style={{ color: '#ef4444', fontSize: '12px', marginTop: '4px' }}>
-                <AlertCircle size={12} style={{ marginRight: '4px' }} />
+              <div style={styles.error}>
+                <AlertCircle size={12} />
                 {errors.password}
               </div>
             )}
