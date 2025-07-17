@@ -9,6 +9,7 @@ import Profile from './pages/Profile';
 import Booking from './pages/Booking';
 import Provider from './pages/Provider';
 import Admin from './pages/Admin';
+import LandingPage from './pages/LandingPage';
 import Header from './components/common/Header';
 import Footer from './components/common/Footer';
 
@@ -17,17 +18,24 @@ const App = () => {
         <AuthProvider>
             <BookingProvider>
                 <Router>
-                    <Header />
                     <Switch>
-                        <Route path="/" exact component={Home} />
-                        <Route path="/login" component={Login} />
-                        <Route path="/register" component={Register} />
-                        <Route path="/profile" component={Profile} />
-                        <Route path="/booking" component={Booking} />
-                        <Route path="/provider" component={Provider} />
-                        <Route path="/admin" component={Admin} />
+                        <Route path="/" exact component={LandingPage} />
+                        <Route render={() => (
+                            <>
+                                <Header />
+                                <Switch>
+                                    <Route path="/login" component={Login} />
+                                    <Route path="/register" component={Register} />
+                                    <Route path="/profile" component={Profile} />
+                                    <Route path="/booking" component={Booking} />
+                                    <Route path="/provider" component={Provider} />
+                                    <Route path="/admin" component={Admin} />
+                                    <Route path="/home" component={Home} />
+                                </Switch>
+                                <Footer />
+                            </>
+                        )} />
                     </Switch>
-                    <Footer />
                 </Router>
             </BookingProvider>
         </AuthProvider>
