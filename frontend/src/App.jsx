@@ -22,7 +22,7 @@ const App = () => {
                         <Route path="/" exact component={LandingPage} />
                         <Route render={() => (
                             <>
-                                <Header />
+                        
                                 <Switch>
                                     <Route path="/login" component={Login} />
                                     <Route path="/register" component={Register} />
@@ -32,7 +32,7 @@ const App = () => {
                                     <Route path="/admin" component={Admin} />
                                     <Route path="/home" component={Home} />
                                 </Switch>
-                                <Footer />
+                        
                             </>
                         )} />
                     </Switch>
