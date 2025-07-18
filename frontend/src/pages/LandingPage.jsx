@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { MapPin, Calendar, Users, Star, Zap, Shield, Globe, ChevronRight, Search, Menu, X } from 'lucide-react';
 import { useHistory } from 'react-router-dom';
 
@@ -7,6 +7,9 @@ const LandingPage = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrollY, setScrollY] = useState(0);
   const [guests, setGuests] = useState("2 Guests");
+  const featuresRef = useRef(null);
+  const aboutRef = useRef(null);
+  const contactRef = useRef(null);
 
   useEffect(() => {
     const handleScroll = () => setScrollY(window.scrollY);
@@ -456,6 +459,25 @@ const LandingPage = () => {
     }
   `;
 
+  // Scroll to Features section
+  const handleScrollToFeatures = () => {
+    if (featuresRef.current) {
+      featuresRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+  // Scroll to About section
+  const handleScrollToAbout = () => {
+    if (aboutRef.current) {
+      aboutRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+  // Scroll to Contact section
+  const handleScrollToContact = () => {
+    if (contactRef.current) {
+      contactRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <div style={styles.container}>
       {/* Overlay for blur and darken effect */}
@@ -487,9 +509,9 @@ const LandingPage = () => {
 
           {/* Desktop Navigation */}
           <nav style={styles.nav} className="nav">
-            <a href="#" style={styles.navLink} className="nav-link">Features</a>
-            <a href="#" style={styles.navLink} className="nav-link">About</a>
-            <a href="#" style={styles.navLink} className="nav-link">Contact</a>
+            <a href="#features" style={styles.navLink} className="nav-link" onClick={e => { e.preventDefault(); handleScrollToFeatures(); }}>Features</a>
+            <a href="#about" style={styles.navLink} className="nav-link" onClick={e => { e.preventDefault(); handleScrollToAbout(); }}>About</a>
+            <a href="#contact" style={styles.navLink} className="nav-link" onClick={e => { e.preventDefault(); handleScrollToContact(); }}>Contact</a>
           </nav>
 
           {/* Auth Buttons */}
@@ -524,9 +546,9 @@ const LandingPage = () => {
         {isMenuOpen && (
           <div style={styles.mobileMenu} className="mobile-menu">
             <nav style={styles.mobileNav}>
-              <a href="#" style={styles.navLink} className="nav-link">Features</a>
-              <a href="#" style={styles.navLink} className="nav-link">About</a>
-              <a href="#" style={styles.navLink} className="nav-link">Contact</a>
+              <a href="#features" style={styles.navLink} className="nav-link" onClick={e => { e.preventDefault(); setIsMenuOpen(false); handleScrollToFeatures(); }}>Features</a>
+              <a href="#about" style={styles.navLink} className="nav-link" onClick={e => { e.preventDefault(); setIsMenuOpen(false); handleScrollToAbout(); }}>About</a>
+              <a href="#contact" style={styles.navLink} className="nav-link" onClick={e => { e.preventDefault(); setIsMenuOpen(false); handleScrollToContact(); }}>Contact</a>
               <div style={styles.mobileAuthButtons}>
                 <button style={styles.signupBtn} className="signup-btn">
                   Login
@@ -649,6 +671,28 @@ const LandingPage = () => {
         </div>
       </section>
 
+      {/* About Section */}
+      <section
+        ref={aboutRef}
+        id="about"
+        style={{
+          padding: '80px 24px',
+          background: 'rgba(15, 23, 42, 0.85)',
+          backdropFilter: 'blur(10px)',
+          zIndex: 1,
+          position: 'relative',
+        }}
+      >
+        <div style={{ maxWidth: '900px', margin: '0 auto', textAlign: 'center' }}>
+          <h2 style={{ fontSize: '2.5rem', fontWeight: 'bold', marginBottom: '24px', background: 'linear-gradient(45deg, #c084fc, #60a5fa)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
+            About HotelSmart
+          </h2>
+          <p style={{ color: '#cbd5e1', fontSize: '1.2rem', lineHeight: 1.7, marginBottom: '32px' }}>
+            HotelSmart is your intelligent companion for discovering and booking the perfect stay. Our platform leverages advanced AI to match you with accommodations tailored to your preferences, ensuring a seamless and secure booking experience. Whether you’re traveling for business or leisure, we connect you to a global network of properties, personalized recommendations, and 24/7 support. Experience the future of hotel booking—smarter, faster, and more personal than ever before.
+          </p>
+        </div>
+      </section>
+
       {/* Stats Section */}
       <section style={{...styles.statsSection, zIndex: 1, position: 'relative'}}>
         <div style={styles.statsGrid}>
@@ -664,7 +708,7 @@ const LandingPage = () => {
       </section>
 
       {/* Features Section */}
-      <section style={{...styles.featuresSection, zIndex: 1, position: 'relative'}}>
+      <section ref={featuresRef} id="features" style={{...styles.featuresSection, zIndex: 1, position: 'relative'}}>
         <div style={styles.sectionHeader}>
           <h2 style={styles.sectionTitle} className="section-title">
             Why Choose HotelSmart?
@@ -687,7 +731,203 @@ const LandingPage = () => {
         </div>
       </section>
 
-      {/* Footer */}
+      {/* Contact Section */}
+      <section
+        ref={contactRef}
+        id="contact"
+        style={{
+          padding: '80px 24px',
+          background: 'rgba(15, 23, 42, 0.85)',
+          backdropFilter: 'blur(10px)',
+          zIndex: 1,
+          position: 'relative'
+        }}
+      >
+        <div
+          style={{
+            maxWidth: '900px',
+            margin: '0 auto',
+            background: 'rgba(255,255,255,0.07)',
+            borderRadius: '20px',
+            padding: '48px 32px',
+            boxShadow: '0 8px 32px rgba(0,0,0,0.15)',
+            display: 'flex',
+            flexWrap: 'wrap',
+            gap: '48px',
+            alignItems: 'flex-start',
+            justifyContent: 'space-between'
+          }}
+        >
+          {/* Contact Info */}
+          <div style={{ flex: '1 1 260px', minWidth: 260 }}>
+            <h2
+              style={{
+                fontSize: '2rem',
+                fontWeight: 700,
+                marginBottom: 16,
+                background: 'linear-gradient(45deg, #c084fc, #60a5fa)',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                backgroundClip: 'text'
+              }}
+            >
+              Contact Us
+            </h2>
+            <div style={{ color: '#cbd5e1', fontSize: 16, marginBottom: 16 }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 10 }}>
+                <span role="img" aria-label="Phone" style={{ color: '#60a5fa', fontSize: 20 }}>📞</span>
+                <span>+1 (800) 555-2025</span>
+              </div>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 10 }}>
+                <span role="img" aria-label="Mail" style={{ color: '#a855f7', fontSize: 20 }}>✉️</span>
+                <span>support@hotelsmart.com</span>
+              </div>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 10 }}>
+                <Globe style={{ width: 20, height: 20, color: '#3b82f6' }} />
+                <a
+                  href="https://hotelsmart.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{ color: '#60a5fa', textDecoration: 'underline' }}
+                >
+                  www.hotelsmart.com
+                </a>
+              </div>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+                <MapPin style={{ width: 20, height: 20, color: '#c084fc' }} />
+                <span>123 AI Avenue, Silicon City, USA</span>
+              </div>
+            </div>
+            <div style={{ marginTop: 24 }}>
+              <span style={{ color: '#cbd5e1', fontWeight: 500 }}>Follow us:</span>
+              <div style={{ display: 'flex', gap: 16, marginTop: 8 }}>
+                <a
+                  href="https://twitter.com/hotelsmart"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{ color: '#60a5fa' }}
+                >
+                  <svg width="22" height="22" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M22.46 5.924c-.793.352-1.646.59-2.542.697a4.48 4.48 0 0 0 1.963-2.475 8.94 8.94 0 0 1-2.828 1.082 4.48 4.48 0 0 0-7.638 4.086A12.72 12.72 0 0 1 3.11 4.89a4.48 4.48 0 0 0 1.388 5.976 4.44 4.44 0 0 1-2.03-.561v.057a4.48 4.48 0 0 0 3.593 4.393 4.48 4.48 0 0 1-2.025.077 4.48 4.48 0 0 0 4.185 3.114A8.98 8.98 0 0 1 2 19.54a12.68 12.68 0 0 0 6.88 2.018c8.26 0 12.78-6.84 12.78-12.78 0-.195-.004-.39-.013-.583A9.13 9.13 0 0 0 24 4.59a8.93 8.93 0 0 1-2.54.697z"/>
+                  </svg>
+                </a>
+                <a
+                  href="https://facebook.com/hotelsmart"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{ color: '#3b82f6' }}
+                >
+                  <svg width="22" height="22" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M22.675 0h-21.35C.595 0 0 .592 0 1.326v21.348C0 23.408.595 24 1.325 24h11.495v-9.294H9.692v-3.622h3.128V8.413c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.797.143v3.24l-1.918.001c-1.504 0-1.797.715-1.797 1.763v2.313h3.587l-.467 3.622h-3.12V24h6.116C23.406 24 24 23.408 24 22.674V1.326C24 .592 23.406 0 22.675 0"/>
+                  </svg>
+                </a>
+                <a
+                  href="https://instagram.com/hotelsmart"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{ color: '#a855f7' }}
+                >
+                  <svg width="22" height="22" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 1.366.062 2.633.334 3.608 1.308.974.974 1.246 2.241 1.308 3.608.058 1.266.07 1.646.07 4.85s-.012 3.584-.07 4.85c-.062 1.366-.334 2.633-1.308 3.608-.974.974-2.241 1.246-3.608 1.308-1.266.058-1.646.07-4.85.07s-3.584-.012-4.85-.07c-1.366-.062-2.633-.334-3.608-1.308-.974-.974-1.246-2.241-1.308-3.608C2.175 15.647 2.163 15.267 2.163 12s.012-3.584.07-4.85c.062-1.366.334-2.633 1.308-3.608.974-.974 2.241-1.246 3.608-1.308C8.416 2.175 8.796 2.163 12 2.163zm0-2.163C8.741 0 8.332.013 7.052.072 5.771.131 4.659.363 3.678 1.344 2.697 2.325 2.465 3.437 2.406 4.718.013 8.332 0 8.741 0 12c0 3.259.013 3.668.072 4.948.059 1.281.291 2.393 1.272 3.374.981.981 2.093 1.213 3.374 1.272C8.332 23.987 8.741 24 12 24c3.259 0 3.668-.013 4.948-.072 1.281-.059 2.393-.291 3.374-1.272.981-.981 1.213-2.093 1.272-3.374.059-1.28.072-1.689.072-4.948 0-3.259-.013-3.668-.072-4.948-.059-1.281-.291-2.393-1.272-3.374-.981-.981-2.093-1.213-3.374-1.272C15.668.013 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zm0 10.162a3.999 3.999 0 1 1 0-7.998 3.999 3.999 0 0 1 0 7.998zm6.406-11.845a1.44 1.44 0 1 0 0 2.88 1.44 1.44 0 0 0 0-2.88z"/>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </div>
+          {/* Contact Form */}
+          <form
+            style={{
+              flex: '2 1 340px',
+              minWidth: 280,
+              background: 'rgba(255,255,255,0.08)',
+              borderRadius: 16,
+              padding: 32,
+              boxShadow: '0 2px 12px rgba(0,0,0,0.07)'
+            }}
+          >
+            <h3
+              style={{
+                fontSize: '1.25rem',
+                fontWeight: 600,
+                marginBottom: 20,
+                color: '#fff'
+              }}
+            >
+              Send us a message
+            </h3>
+            <div style={{ marginBottom: 16 }}>
+              <input
+                type="text"
+                placeholder="Your Name"
+                style={{
+                  width: '90%',
+                  padding: '14px 16px',
+                  borderRadius: 10,
+                  border: '1px solid rgba(255,255,255,0.18)',
+                  background: 'rgba(255,255,255,0.12)',
+                  color: '#fff',
+                  fontSize: 15,
+                  marginBottom: 10,
+                  outline: 'none'
+                }}
+                required
+              />
+              <input
+                type="email"
+                placeholder="Your Email"
+                style={{
+                  width: '90%',
+                  padding: '14px 16px',
+                  borderRadius: 10,
+                  border: '1px solid rgba(255,255,255,0.18)',
+                  background: 'rgba(255,255,255,0.12)',
+                  color: '#fff',
+                  fontSize: 15,
+                  marginBottom: 10,
+                  outline: 'none'
+                }}
+                required
+              />
+              <textarea
+                placeholder="Your Message"
+                rows={4}
+                style={{
+                  width: '90%',
+                  padding: '14px 16px',
+                  borderRadius: 10,
+                  border: '1px solid rgba(255,255,255,0.18)',
+                  background: 'rgba(255,255,255,0.12)',
+                  color: '#fff',
+                  fontSize: 15,
+                  marginBottom: 10,
+                  outline: 'none',
+                  resize: 'vertical'
+                }}
+                required
+              />
+            </div>
+            <button
+              type="submit"
+              style={{
+                width: '100%',
+                padding: '14px',
+                borderRadius: 10,
+                border: 'none',
+                background: 'linear-gradient(45deg, #3b82f6, #a855f7)',
+                color: '#fff',
+                fontWeight: 600,
+                fontSize: 16,
+                cursor: 'pointer',
+                transition: 'all 0.2s'
+              }}
+            >
+              Send Message
+            </button>
+          </form>
+        </div>
+      </section>
+
+        {/* Footer */}
       <footer style={{...styles.footer, zIndex: 2, position: 'relative'}}>
         <div style={styles.footerLogo}>
           <div style={styles.footerLogoIcon}>
