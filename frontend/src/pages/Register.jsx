@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import { Mail, Lock, Eye, EyeOff, Shield, AlertCircle, ChevronDown, Menu, X, User } from 'lucide-react';
 
 const Register = () => {
+  const history = useHistory();
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -350,7 +352,14 @@ const Register = () => {
       <style>{keyframes}</style>
       <header style={styles.header}>
         <div style={styles.headerContent}>
-          <div style={styles.logo}>
+          <div
+            style={styles.logo}
+            onClick={() => history.push('/')}
+            role="button"
+            tabIndex={0}
+            aria-label="Go to landing page"
+            onKeyPress={e => { if (e.key === 'Enter' || e.key === ' ') history.push('/'); }}
+          >
             <div style={styles.logoIcon}>
               <span>H</span>
             </div>
@@ -364,8 +373,12 @@ const Register = () => {
           </nav>
 
           <div style={styles.authButtons} className="auth-buttons">
-            <button style={styles.signupBtn} className="signup-btn">
-              Login
+            <button
+              style={styles.signupBtn}
+              className="signup-btn"
+              onClick={() => history.push('/login')}
+            >
+              Sign In
             </button>
           </div>
 
