@@ -19,7 +19,7 @@ const App = () => {
             <BookingProvider>
                 <Router>
                     <Switch>
-                        <Route path="/" exact component={LandingPage} />
+                        <Route path="/" exact component={Home} />
                         <Route render={() => (
                             <>
                         
