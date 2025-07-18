@@ -378,18 +378,18 @@ const ProviderHome = () => {
               <div className="p-6">
                 <h2 className="text-lg font-semibold text-gray-900 mb-4">Support & Help</h2>
                 <div className="space-y-3">
-                  <a href="#" className="flex items-center space-x-3 p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+                  <a href="/faq" className="flex items-center space-x-3 p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
                     <HelpCircle className="h-5 w-5 text-gray-600" />
                     <span className="text-gray-700">FAQs</span>
                   </a>
-                  <a href="#" className="flex items-center space-x-3 p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+                  <button type="button" className="flex items-center space-x-3 p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors w-full text-left">
                     <MessageCircle className="h-5 w-5 text-gray-600" />
                     <span className="text-gray-700">Contact Support</span>
-                  </a>
-                  <a href="#" className="flex items-center space-x-3 p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+                  </button>
+                  <button type="button" className="flex items-center space-x-3 p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors w-full text-left">
                     <AlertCircle className="h-5 w-5 text-gray-600" />
                     <span className="text-gray-700">Report a Problem</span>
-                  </a>
+                  </button>
                 </div>
               </div>
             </section>
