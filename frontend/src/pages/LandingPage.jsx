@@ -556,45 +556,59 @@ const LandingPage = () => {
           </p>
 
           {/* Search Box */}
-          <div style={styles.searchContainer}>
-            <div style={styles.searchBox}>
-              <div style={styles.inputGroup}>
-                <MapPin style={styles.inputIcon} />
-                <input
-                  type="text"
-                  placeholder="Where to?"
-                  style={styles.input}
-                  className="input"
-                />
-              </div>
-              <div style={styles.inputGroup}>
-                <Calendar style={styles.inputIcon} />
-                <input
-                  type="date"
-                  style={styles.input}
-                  className="input"
-                />
-              </div>
-              <div style={styles.inputGroup}>
-                <Calendar style={styles.inputIcon} />
-                <input
-                  type="date"
-                  style={styles.input}
-                  className="input"
-                />
-              </div>
-              <div style={styles.inputGroup}>
-                <Users style={styles.inputIcon} />
-                <input
-                  type="text"
-                  placeholder="Guests"
-                  style={styles.input}
-                  className="input"
-                  value={guests}
-                  readOnly
-                />
-                <select
-                  style={{
+                <div style={styles.searchContainer}>
+                <div style={styles.searchBox}>
+                  <label style={{ color: '#cbd5e1', marginBottom: 4, display: 'block', fontSize: 14, fontWeight: 500 }}>
+                    Location
+                  </label>
+                  <div style={styles.inputGroup}>
+                  <MapPin style={styles.inputIcon} />
+                  <input
+                    type="text"
+                    placeholder="Where to?"
+                    style={styles.input}
+                    className="input"
+                  />
+                  </div>
+                   <label style={{ color: '#cbd5e1', marginBottom: 4, display: 'block', fontSize: 14, fontWeight: 500 }}>
+                    Check-in Date
+                  </label>
+                  <div style={styles.inputGroup}>
+                  <Calendar style={styles.inputIcon} />
+                  <input
+                    type="date"
+                    style={styles.input}
+                    className="input"
+                  />
+                  </div>
+
+                   <label style={{ color: '#cbd5e1', marginBottom: 4, display: 'block', fontSize: 14, fontWeight: 500 }}>
+                    Check-out Date
+                  </label>
+                  <div style={styles.inputGroup}>
+                  <Calendar style={styles.inputIcon} />
+                  <input
+                    type="date"
+                    style={styles.input}
+                    className="input"
+                  />
+                  </div>
+
+                   <label style={{ color: '#cbd5e1', marginBottom: 4, display: 'block', fontSize: 14, fontWeight: 500 }}>
+                    Guests
+                  </label>
+                  <div style={styles.inputGroup}>
+                  <Users style={styles.inputIcon} />
+                  <input
+                    type="text"
+                    placeholder="Guests"
+                    style={styles.input}
+                    className="input"
+                    value={guests}
+                    readOnly
+                  />
+                  <select
+                    style={{
                     position: 'absolute',
                     top: 0,
                     left: 0,
@@ -602,25 +616,29 @@ const LandingPage = () => {
                     height: '100%',
                     opacity: 0,
                     cursor: 'pointer'
-                  }}
-                  onChange={(e) => setGuests(e.target.value)}
-                >
-                  <option>2 Guests</option>
-                  <option>1 Guest</option>
-                  <option>3 Guests</option>
-                  <option>4+ Guests</option>
-                </select>
-              </div>
-              <button style={styles.searchBtn} className="search-btn">
-                <Search style={{ width: '20px', height: '20px' }} />
-                Search Hotels
-              </button>
-            </div>
-          </div>
+                    }}
+                    onChange={(e) => setGuests(e.target.value)}
+                  >
+                    <option>2 Guests</option>
+                    <option>1 Guest</option>
+                    <option>3 Guests</option>
+                    <option>4+ Guests</option>
+                  </select>
+                  </div>
+                  <button style={styles.searchBtn} className="search-btn">
+                  <Search style={{ width: '20px', height: '20px' }} />
+                  Search Hotels
+                  </button>
+                </div>
+                </div>
 
-          {/* CTA Buttons */}
+                {/* CTA Buttons */}
           <div style={styles.ctaButtons} className="cta-buttons">
-            <button style={styles.primaryBtn} className="primary-btn">
+            <button
+              style={styles.primaryBtn}
+              className="primary-btn"
+              onClick={() => history.push('/register')}
+            >
               <span>Get Started</span>
               <ChevronRight style={{ width: '20px', height: '20px' }} />
             </button>
