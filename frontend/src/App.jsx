@@ -1,6 +1,6 @@
 import React from 'react';
-import ProviderHome from './pages/ProviderHome'; // Adjust path if needed
-import './assets/styles/tailwind.css';
+import ProviderHome from './pages/ProviderHome.jsx';
+
 
 function App() {
   return (
