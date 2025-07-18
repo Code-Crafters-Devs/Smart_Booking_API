@@ -6,6 +6,7 @@ const LandingPage = () => {
   const history = useHistory();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrollY, setScrollY] = useState(0);
+  const [guests, setGuests] = useState("2 Guests");
 
   useEffect(() => {
     const handleScroll = () => setScrollY(window.scrollY);
@@ -203,7 +204,7 @@ const LandingPage = () => {
       color: 'rgba(255, 255, 255, 0.7)'
     },
     input: {
-      width: '100%',
+      width: '90%',
       padding: '16px 16px 16px 48px',
       background: 'rgba(255, 255, 255, 0.15)',
       borderRadius: '12px',
@@ -457,10 +458,22 @@ const LandingPage = () => {
 
   return (
     <div style={styles.container}>
+      {/* Overlay for blur and darken effect */}
+      <div style={{
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        width: '100vw',
+        height: '100vh',
+        zIndex: 0,
+        background: 'rgba(15, 23, 42, 0.55)',
+        backdropFilter: 'blur(6px)',
+        pointerEvents: 'none',
+      }} />
       <style>{keyframes}</style>
 
       {/* Header */}
-      <header style={styles.header}>
+      <header style={{...styles.header, zIndex: 2}}>
         <div style={styles.headerContent}>
           {/* Logo */}
           <div style={styles.logo}>
@@ -482,8 +495,8 @@ const LandingPage = () => {
           {/* Auth Buttons */}
           <div style={styles.authButtons} className="auth-buttons">
             <button
-              style={styles.loginBtn}
-              className="login-btn"
+              style={styles.signupBtn}
+              className="signup-btn"
               onClick={() => history.push('/login')}
             >
               Login
@@ -515,7 +528,7 @@ const LandingPage = () => {
               <a href="#" style={styles.navLink} className="nav-link">About</a>
               <a href="#" style={styles.navLink} className="nav-link">Contact</a>
               <div style={styles.mobileAuthButtons}>
-                <button style={styles.loginBtn} className="login-btn">
+                <button style={styles.signupBtn} className="signup-btn">
                   Login
                 </button>
                 <button style={styles.signupBtn} className="signup-btn">
@@ -528,7 +541,7 @@ const LandingPage = () => {
       </header>
 
       {/* Hero Section */}
-      <section style={styles.heroSection}>
+      <section style={{...styles.heroSection, zIndex: 1, position: 'relative'}}>
         <div style={styles.heroContent}>
           <h1 style={styles.heroTitle} className="hero-title">
             Smart Hotel Booking
@@ -572,9 +585,25 @@ const LandingPage = () => {
               </div>
               <div style={styles.inputGroup}>
                 <Users style={styles.inputIcon} />
-                <select
+                <input
+                  type="text"
+                  placeholder="Guests"
                   style={styles.input}
                   className="input"
+                  value={guests}
+                  readOnly
+                />
+                <select
+                  style={{
+                    position: 'absolute',
+                    top: 0,
+                    left: 0,
+                    width: '100%',
+                    height: '100%',
+                    opacity: 0,
+                    cursor: 'pointer'
+                  }}
+                  onChange={(e) => setGuests(e.target.value)}
                 >
                   <option>2 Guests</option>
                   <option>1 Guest</option>
@@ -603,7 +632,7 @@ const LandingPage = () => {
       </section>
 
       {/* Stats Section */}
-      <section style={styles.statsSection}>
+      <section style={{...styles.statsSection, zIndex: 1, position: 'relative'}}>
         <div style={styles.statsGrid}>
           {stats.map((stat, index) => (
             <div key={index} style={styles.statItem}>
@@ -617,7 +646,7 @@ const LandingPage = () => {
       </section>
 
       {/* Features Section */}
-      <section style={styles.featuresSection}>
+      <section style={{...styles.featuresSection, zIndex: 1, position: 'relative'}}>
         <div style={styles.sectionHeader}>
           <h2 style={styles.sectionTitle} className="section-title">
             Why Choose HotelSmart?
@@ -641,7 +670,7 @@ const LandingPage = () => {
       </section>
 
       {/* Footer */}
-      <footer style={styles.footer}>
+      <footer style={{...styles.footer, zIndex: 2, position: 'relative'}}>
         <div style={styles.footerLogo}>
           <div style={styles.footerLogoIcon}>
             <span>H</span>
