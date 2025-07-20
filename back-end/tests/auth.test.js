@@ -1,42 +1,63 @@
-process.env.NODE_ENV = 'test'; 
-const chai = require('chai'); 
+process.env.NODE_ENV = 'test';
+const chai = require('chai');
 const chaiHttp = require('chai-http');
-console.log('chaiHttp is:', typeof chaiHttp);
+const app = require('../server');
+const { Sequelize } = require('sequelize');
+const initUser = require('../models/User');
 
-const app = require('../server'); 
-const { expect } = chai; 
+chai.should();
+chai.use(chaiHttp);
 
-chai.use(chaiHttp); 
+describe('Authentication', function() {
+  this.timeout(20000); // 20 second timeout
 
-describe('Authentication', () => {
-  it('should register a user', (done) => {
-    chai.request(app) 
+  before(async function() {
+    this.sequelize = new Sequelize({
+      dialect: 'postgres',
+      host: process.env.DB_HOST,
+      port: process.env.DB_PORT,
+      username: process.env.DB_USER,
+      password: process.env.DB_PASSWORD,
+      database: process.env.DB_NAME_TEST || process.env.DB_NAME + '_test',
+      logging: false
+    });
+
+    this.User = initUser(this.sequelize);
+    app.set('models', { User: this.User });
+
+    await this.sequelize.authenticate();
+    await this.sequelize.sync({ force: true });
+  });
+
+  after(async function() {
+    await this.sequelize.close();
+  });
+
+  it('should register a user', async function() {
+    const res = await chai.request(app)
       .post('/api/auth/register')
       .send({
         first_name: 'Test',
         last_name: 'User',
-        email: `user${Date.now()}@test.com`, 
+        email: `test${Date.now()}@example.com`,
         password: 'password123',
         role_id: 2
-      })
-      .end((err, res) => {
-        expect(res).to.have.status(201);
-        expect(res.body).to.have.property('user');
-        done();
       });
+
+    res.should.have.status(201);
+    res.body.should.have.property('user');
+    res.body.user.should.have.property('email');
   });
 
-  it('should fail login with wrong credentials', (done) => {
-    chai.request(app) // <-- lowercase
+  it('should fail login with wrong credentials', async function() {
+    const res = await chai.request(app)
       .post('/api/auth/login')
       .send({
-        email: 'nonexistent@test.com',
+        email: 'nonexistent@example.com',
         password: 'wrongpassword'
-      })
-      .end((err, res) => {
-        expect(res).to.have.status(401);
-        expect(res.body).to.have.property('error');
-        done();
       });
+
+    res.should.have.status(401);
+    res.body.should.have.property('error');
   });
 });
