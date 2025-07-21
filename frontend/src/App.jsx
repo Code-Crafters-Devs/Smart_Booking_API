@@ -1,11 +1,11 @@
 import React from 'react';
-import ProviderHome from './pages/ProviderHome.jsx';
+import Admin from './pages/Admin.jsx';
 
 
 function App() {
   return (
     <div>
-      <ProviderHome />
+      <Admin />
     </div>
   );
 }
