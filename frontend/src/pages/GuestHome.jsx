@@ -22,7 +22,7 @@ const HotelBookingDashboard = () => {
             id: 1, 
             name: "Luxe Urban Retreat", 
             location: "Downtown Manhattan, NYC", 
-            price: 425, 
+            price: 430, 
             rating: 4.9, 
             reviews: 1247, 
             image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=400&h=300&fit=crop", 
@@ -216,7 +216,7 @@ const HotelBookingDashboard = () => {
         .error-content {
           background-color: white;
           border-radius: 8px;
-          padding: 24px;
+          padding: 23px;
           text-align: center;
           max-width: 400px;
           box-shadow: 0 4px 6px rgba(0,0,0,0.1);
@@ -279,7 +279,7 @@ const HotelBookingDashboard = () => {
         .search-filters {
           background-color: white;
           border-radius: 12px;
-          padding: 24px;
+          padding: 23px;
           box-shadow: 0 1px 3px rgba(0,0,0,0.1);
           border: 1px solid #e5e7eb;
         }
