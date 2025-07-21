@@ -24,7 +24,7 @@ const HotelBookingDashboard = () => {
             location: "Downtown Manhattan, NYC", 
             price: 430, 
             rating: 4.9, 
-            reviews: 1247, 
+            reviews: 1249, 
             image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=400&h=300&fit=crop", 
             amenities: ['wifi', 'gym', 'parking', 'coffee'], 
             description: "A sophisticated urban oasis with panoramic city views and world-class amenities.", 
