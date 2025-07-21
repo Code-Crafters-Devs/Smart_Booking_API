@@ -11,6 +11,7 @@ const LandingPage = () => {
   const aboutRef = useRef(null);
   const contactRef = useRef(null);
 
+
   useEffect(() => {
     const handleScroll = () => setScrollY(window.scrollY);
     window.addEventListener('scroll', handleScroll);
@@ -240,6 +241,8 @@ const LandingPage = () => {
       gap: '24px',
       marginTop: '32px'
     },
+
+  
     primaryBtn: {
       display: 'flex',
       alignItems: 'center',
@@ -302,7 +305,7 @@ const LandingPage = () => {
       textAlign: 'center',
       marginBottom: '64px',
       maxWidth: '1200px',
-      margin: '0 auto 64px'
+      margin: '0 auto 63px'
     },
     sectionTitle: {
       fontSize: '2.5rem',
