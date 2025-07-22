@@ -39,4 +39,28 @@ Developed over 3 weeks using Agile methodology, this robust API leverages modern
 
 ## 🏗️ Project Structure
 
+📦 smart-booking-api
 
+├── 📁 config # Environment and DB config
+
+├── 📁 controllers # Logic for routes
+
+├── 📁 middleware # Authentication and error handling
+
+├── 📁 models # Sequelize models
+
+├── 📁 routes # API route definitions
+
+├── 📁 services # Business logic
+
+├── 📁 test # Mocha/Chai test suites
+
+├── 📁 docs # Swagger API docs
+
+├── 📄 .env.example # Environment variables template
+
+├── 📄 app.js # Express app entry point
+
+├── 📄 package.json # NPM dependencies and scripts
+
+└── 📄 README.md # Project documentation
