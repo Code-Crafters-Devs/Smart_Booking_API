@@ -37,11 +37,42 @@ const Register = () => {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (validateForm()) {
-      console.log('Registration submitted:', formData);
-      alert('Account created successfully!');
+      // Map role string to role_id
+      const roleMap = { Guest: 2, Provider: 1, Admin: 3 };
+      const payload = {
+        first_name: formData.firstName,
+        last_name: formData.lastName,
+        email: formData.email,
+        password: formData.password,
+        role_id: roleMap[formData.role] || 2
+      };
+      try {
+        const response = await fetch(`${process.env.REACT_APP_API_URL.replace(/\/$/, '')}/auth/register`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        if (response.ok) {
+          setFormData({
+            firstName: '',
+            lastName: '',
+            email: '',
+            password: '',
+            confirmPassword: '',
+            role: 'Guest'
+          });
+          alert('Account created successfully!');
+          history.push('/login');
+        } else {
+          const data = await response.json();
+          alert(data.error || 'Registration failed');
+        }
+      } catch (err) {
+        alert('Network error. Please try again.');
+      }
     }
   };
 

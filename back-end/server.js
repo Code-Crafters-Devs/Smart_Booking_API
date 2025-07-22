@@ -1,15 +1,15 @@
 const express = require('express');
 require('dotenv').config();
-const sequelize = require('./config/database');
+const models = require('./models'); // <-- use index.js loader
 const authRoutes = require('./routes/auth');
-const initUser = require('./models/User');
+const cors = require('cors');
 
 const app = express();
 app.use(express.json());
+app.use(cors());
 
 // Initialize models
-const User = initUser(sequelize);
-app.set('models', { User });
+app.set('models', models);
 
 // Routes
 app.use('/api/auth', authRoutes);
@@ -22,10 +22,10 @@ app.use((err, req, res, next) => {
 
 // Start server
 if (process.env.NODE_ENV !== 'test') {
-  sequelize.sync()
+  models.User.sequelize.sync()
     .then(() => {
-      app.listen(process.env.PORT || 3000, () => {
-        console.log(`Server running on port ${process.env.PORT || 3000}`);
+      app.listen(process.env.PORT || 5000, () => {
+        console.log(`Server running on port ${process.env.PORT || 5000}`);
       });
     })
     .catch(err => {
