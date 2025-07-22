@@ -507,6 +507,7 @@ const Login = () => {
                 >
                   <option value="Guest">Guest</option>
                   <option value="Provider">Provider</option>
+                  <option value="Guest">Admin</option>
                 </select>
                 <svg
                   style={{
