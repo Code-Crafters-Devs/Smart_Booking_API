@@ -835,7 +835,7 @@ const LandingPage = () => {
             </div>
           </div>
           {/* Contact Form */}
-          <form
+        {/*  <form
             style={{
               flex: '2 1 340px',
               minWidth: 280,
@@ -923,7 +923,146 @@ const LandingPage = () => {
             >
               Send Message
             </button>
-          </form>
+          </form>  */}
+
+{/* Contact Form */}
+<form
+  id="contactForm"
+  style={{
+    flex: '2 1 340px',
+    minWidth: 280,
+    background: 'rgba(255,255,255,0.08)',
+    borderRadius: 16,
+    padding: 32,
+    boxShadow: '0 2px 12px rgba(0,0,0,0.07)'
+  }}
+  onSubmit={async (event) => {
+    event.preventDefault();
+    const form = event.target;
+    const formData = new FormData(form);
+    const statusDiv = document.getElementById("formStatus");
+    
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: formData
+      });
+      
+      if (response.ok) {
+        statusDiv.innerText = "Message sent successfully! I will get back to you ASAP.";
+        form.reset();
+        setTimeout(() => {
+          statusDiv.innerText = "";
+        }, 3000);
+      } else {
+        statusDiv.innerText = "Something went wrong. Please try again.";
+      }
+    } catch (error) {
+      statusDiv.innerText = "Error: " + error.message;
+    }
+  }}
+>
+  {/* Hidden field for Web3Forms API key - replace with your actual key */}
+  <input type="hidden" name="access_key" value="966c090e-9128-4a8b-881c-a4155d8c7dc6" />
+  
+  <h3
+    style={{
+      fontSize: '1.25rem',
+      fontWeight: 600,
+      marginBottom: 20,
+      color: '#fff'
+    }}
+  >
+    Send us a message
+  </h3>
+  
+  {/* Status message div */}
+  <div 
+    id="formStatus"
+    style={{
+      marginBottom: 16,
+      color: '#4ade80',
+      fontSize: 14,
+      fontWeight: 500,
+      minHeight: 20
+    }}
+  ></div>
+  
+  <div style={{ marginBottom: 16 }}>
+    <input
+      type="text"
+      name="name"
+      placeholder="Your Name"
+      style={{
+        width: '90%',
+        padding: '14px 16px',
+        borderRadius: 10,
+        border: '1px solid rgba(255,255,255,0.18)',
+        background: 'rgba(255,255,255,0.12)',
+        color: '#fff',
+        fontSize: 15,
+        marginBottom: 10,
+        outline: 'none'
+      }}
+      required
+    />
+    <input
+      type="email"
+      name="email"
+      placeholder="Your Email"
+      style={{
+        width: '90%',
+        padding: '14px 16px',
+        borderRadius: 10,
+        border: '1px solid rgba(255,255,255,0.18)',
+        background: 'rgba(255,255,255,0.12)',
+        color: '#fff',
+        fontSize: 15,
+        marginBottom: 10,
+        outline: 'none'
+      }}
+      required
+    />
+    <textarea
+      name="message"
+      placeholder="Your Message"
+      rows={4}
+      style={{
+        width: '90%',
+        padding: '14px 16px',
+        borderRadius: 10,
+        border: '1px solid rgba(255,255,255,0.18)',
+        background: 'rgba(255,255,255,0.12)',
+        color: '#fff',
+        fontSize: 15,
+        marginBottom: 10,
+        outline: 'none',
+        resize: 'vertical'
+      }}
+      required
+    />
+  </div>
+  <button
+    type="submit"
+    style={{
+      width: '100%',
+      padding: '14px',
+      borderRadius: 10,
+      border: 'none',
+      background: 'linear-gradient(45deg, #3b82f6, #a855f7)',
+      color: '#fff',
+      fontWeight: 600,
+      fontSize: 16,
+      cursor: 'pointer',
+      transition: 'all 0.2s'
+    }}
+  >
+    Send Message
+  </button>
+</form>
+
+
+
         </div>
       </section>
 
