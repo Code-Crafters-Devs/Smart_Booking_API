@@ -7,11 +7,10 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import Profile from './pages/Profile';
 import Booking from './pages/Booking';
-import Provider from './pages/Provider';
+import Provider from './pages/ProviderHome';
 import Admin from './pages/Admin';
 import LandingPage from './pages/LandingPage';
-import Header from './components/common/Header';
-import Footer from './components/common/Footer';
+
 
 const App = () => {
     return (
