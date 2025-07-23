@@ -1,0 +1,44 @@
+import React from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { AuthProvider } from './context/AuthContext';
+import { BookingProvider } from './context/BookingContext';
+import Home from './pages/GuestHome';
+import Login from './pages/Login';
+import Register from './pages/Register';
+import Profile from './pages/Profile';
+import Booking from './pages/Booking';
+import Provider from './pages/ProviderHome';
+import Admin from './pages/Admin';
+import LandingPage from './pages/LandingPage';
+
+
+const App = () => {
+    return (
+        <AuthProvider>
+            <BookingProvider>
+                <Router>
+                    <Switch>
+                        <Route path="/" exact component={LandingPage} />
+                        <Route render={() => (
+                            <>
+                        
+                                <Switch>
+                                    <Route path="/login" component={Login} />
+                                    <Route path="/register" component={Register} />
+                                    <Route path="/profile" component={Profile} />
+                                    <Route path="/booking" component={Booking} />
+                                    <Route path="/provider" component={Provider} />
+                                    <Route path="/admin" component={Admin} />
+                                    <Route path="/home" component={Home} />
+                                </Switch>
+                        
+                            </>
+                        )} />
+                    </Switch>
+                </Router>
+            </BookingProvider>
+        </AuthProvider>
+    );
+};
+
+export default App;
