@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import { Mail, Lock, Eye, EyeOff, ArrowLeft, AlertCircle, Menu, X } from 'lucide-react';
 
 const Login = () => {
+  const history = useHistory();
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -27,11 +29,42 @@ const Login = () => {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (validateForm()) {
-      console.log('Login submitted:', formData);
-      alert('Login successful!');
+      try {
+        const response = await fetch(`${process.env.REACT_APP_API_URL.replace(/\/$/, '')}/auth/login`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            email: formData.email,
+            password: formData.password
+          })
+        });
+        if (response.ok) {
+          const data = await response.json();
+          // Decode JWT to get role_id (or fetch user info if needed)
+          const token = data.token;
+          // Save token if needed: localStorage.setItem('token', token);
+          // Decode token to get role_id
+          const payload = JSON.parse(atob(token.split('.')[1]));
+          const roleId = payload.role_id;
+          // Map role_id to role name
+          let role = 'Guest';
+          if (roleId === 1) role = 'Provider';
+          else if (roleId === 2) role = 'Guest';
+          else if (roleId === 3) role = 'Admin';
+          // Redirect based on role
+          if (role === 'Admin') history.push('/admin');
+          else if (role === 'Provider') history.push('/provider');
+          else history.push('/home');
+        } else {
+          const data = await response.json();
+          alert(data.error || 'Login failed');
+        }
+      } catch (err) {
+        alert('Network error. Please try again.');
+      }
     }
   };
 
@@ -486,7 +519,7 @@ const Login = () => {
 
           <form onSubmit={handleSubmit}>
             <div style={styles.inputGroup}>
-              <label style={{ display: 'block', marginBottom: '8px', fontSize: '14px', fontWeight: '500' }}>Role</label>
+              <label htmlFor="role-select" style={{ display: 'block', marginBottom: '8px', fontSize: '14px', fontWeight: '500' }}>Role</label>
               <div style={styles.inputContainer}>
                 <svg
                   style={styles.inputIcon}
@@ -500,6 +533,7 @@ const Login = () => {
                   <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
                 </svg>
                 <select
+                  id="role-select"
                   name="role"
                   value={formData.role}
                   onChange={handleInputChange}
@@ -531,10 +565,11 @@ const Login = () => {
             </div>
 
             <div style={styles.inputGroup}>
-              <label style={{ display: 'block', marginBottom: '8px', fontSize: '14px', fontWeight: '500' }}>Email Address</label>
+              <label htmlFor="email-input" style={{ display: 'block', marginBottom: '8px', fontSize: '14px', fontWeight: '500' }}>Email Address</label>
               <div style={styles.inputContainer}>
                 <Mail size={20} style={styles.inputIcon} />
                 <input
+                  id="email-input"
                   type="email"
                   name="email"
                   value={formData.email}
@@ -552,10 +587,11 @@ const Login = () => {
             </div>
 
             <div style={styles.inputGroup}>
-              <label style={{ display: 'block', marginBottom: '8px', fontSize: '14px', fontWeight: '500' }}>Password</label>
+              <label htmlFor="password-input" style={{ display: 'block', marginBottom: '8px', fontSize: '14px', fontWeight: '500' }}>Password</label>
               <div style={styles.inputContainer}>
                 <Lock size={20} style={styles.inputIcon} />
                 <input
+                  id="password-input"
                   type={showPassword ? 'text' : 'password'}
                   name="password"
                   value={formData.password}
@@ -566,6 +602,10 @@ const Login = () => {
                 <div 
                   onClick={() => setShowPassword(!showPassword)} 
                   style={styles.eyeIcon}
+                  role="button"
+                  tabIndex={0}
+                  onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') setShowPassword(!showPassword); }}
+                  aria-label="Toggle password visibility"
                 >
                   {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
                 </div>
@@ -584,11 +624,25 @@ const Login = () => {
           </form>
 
           <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '20px' }}>
-            <span style={styles.link} onClick={() => setShowForgotPassword(true)}>
+            <span
+              style={styles.link}
+              onClick={() => setShowForgotPassword(true)}
+              role="button"
+              tabIndex={0}
+              onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') setShowForgotPassword(true); }}
+              aria-label="Forgot Password"
+            >
               Forgot Password?
             </span>
-            <span style={styles.link} onClick={() => window.location.href = '/register'}>
-              Don't have an account? Sign up
+            <span
+              style={styles.link}
+              onClick={() => window.location.href = '/register'}
+              role="button"
+              tabIndex={0}
+              onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') window.location.href = '/register'; }}
+              aria-label="Don't have an account? Sign up"
+            >
+              Don&apos;t have an account? Sign up
             </span>
           </div>
         </div>
