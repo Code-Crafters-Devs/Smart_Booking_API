@@ -2,7 +2,7 @@
 
 <div align="center">
 
-![Smart Booking Logo](https://via.placeholder.com/200x80/4F46E5/FFFFFF?text=Smart+Booking)
+![Smart Booking Logo](frontend/src/assets/pictures/Home.png)
 
 **A comprehensive hotel booking backend API with AI-powered natural language processing**
 
@@ -99,17 +99,17 @@ Role: Customer
 
 ## 📸 Screenshots
 
-### 🎯 API Documentation (Swagger UI)
-![Swagger Documentation](https://via.placeholder.com/800x400/F3F4F6/1F2937?text=Swagger+API+Documentation)
+### 🎯 Provider Page
+![Provider Page](frontend/src/assets/pictures/Provider.png)
 
 ### 📊 Dashboard Analytics
-![Dashboard](https://via.placeholder.com/800x400/EFF6FF/3B82F6?text=Analytics+Dashboard)
+![Dashboard](frontend/src/assets/pictures/Admin.png)
 
-### 🔐 Authentication Flow
-![Authentication](https://via.placeholder.com/800x400/F0FDF4/16A34A?text=JWT+Authentication+System)
+### 🔐 Authentication Page
+![Authentication](frontend/src/assets/pictures/Login.png)
 
-### 🤖 AI Booking Interface
-![AI Booking](https://via.placeholder.com/800x400/FEF3C7/D97706?text=Natural+Language+Booking)
+### 🤖 Signup Page
+![Signup](frontend/src/assets/pictures/Signup.png)
 
 ---
 
