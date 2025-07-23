@@ -4,12 +4,12 @@ import Reports from '../components/admin/Reports';
 import Header from '../components/common/Header';
 import Footer from '../components/common/Footer';
 
-const Admin = () => {
+const GuestHome = () => {
     return (
         <div>
             <Header />
             <main>
-                <h1 className="text-2xl font-bold">Admin Dashboard</h1>
+                <h1 className="text-2xl font-bold">Guest Dashboard</h1>
                 <UserManagement />
                 <Reports />
             </main>
@@ -18,4 +18,4 @@ const Admin = () => {
     );
 };
 
-export default Admin;
+export default GuestHome;

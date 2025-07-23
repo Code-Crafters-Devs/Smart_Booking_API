@@ -445,10 +445,11 @@ const Register = () => {
           <form onSubmit={handleSubmit}>
             <div style={styles.nameContainer}>
               <div style={styles.nameInputGroup}>
-                <label style={styles.label}>First Name</label>
+                <label htmlFor="firstName-input" style={styles.label}>First Name</label>
                 <div style={styles.inputContainer}>
                   <User size={20} style={styles.inputIcon} />
                   <input
+                    id="firstName-input"
                     type="text"
                     name="firstName"
                     value={formData.firstName}
@@ -466,10 +467,11 @@ const Register = () => {
               </div>
 
               <div style={styles.nameInputGroup}>
-                <label style={styles.label}>Last Name</label>
+                <label htmlFor="lastName-input" style={styles.label}>Last Name</label>
                 <div style={styles.inputContainer}>
                   <User size={20} style={styles.inputIcon} />
                   <input
+                    id="lastName-input"
                     type="text"
                     name="lastName"
                     value={formData.lastName}
@@ -488,10 +490,11 @@ const Register = () => {
             </div>
 
             <div style={styles.inputGroup}>
-              <label style={styles.label}>Role</label>
+              <label htmlFor="role-select" style={styles.label}>Role</label>
               <div style={styles.inputContainer}>
                 <Shield size={20} style={styles.selectIcon} />
                 <select
+                  id="role-select"
                   name="role"
                   value={formData.role}
                   onChange={handleInputChange}
@@ -506,10 +509,11 @@ const Register = () => {
             </div>
 
             <div style={styles.inputGroup}>
-              <label style={styles.label}>Email Address</label>
+              <label htmlFor="email-input" style={styles.label}>Email Address</label>
               <div style={styles.inputContainer}>
                 <Mail size={20} style={styles.inputIcon} />
                 <input
+                  id="email-input"
                   type="email"
                   name="email"
                   value={formData.email}
@@ -527,10 +531,11 @@ const Register = () => {
             </div>
 
             <div style={styles.inputGroup}>
-              <label style={styles.label}>Password</label>
+              <label htmlFor="password-input" style={styles.label}>Password</label>
               <div style={styles.inputContainer}>
                 <Lock size={20} style={styles.inputIcon} />
                 <input
+                  id="password-input"
                   type={showPassword ? 'text' : 'password'}
                   name="password"
                   value={formData.password}
@@ -538,9 +543,13 @@ const Register = () => {
                   placeholder="Enter your password"
                   style={styles.input}
                 />
-                <div 
-                  onClick={() => setShowPassword(!showPassword)} 
+                <div
+                  onClick={() => setShowPassword(!showPassword)}
                   style={styles.eyeIcon}
+                  role="button"
+                  tabIndex={0}
+                  aria-label="Toggle password visibility"
+                  onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') setShowPassword(!showPassword); }}
                 >
                   {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
                 </div>
@@ -554,10 +563,11 @@ const Register = () => {
             </div>
 
             <div style={styles.inputGroup}>
-              <label style={styles.label}>Confirm Password</label>
+              <label htmlFor="confirmPassword-input" style={styles.label}>Confirm Password</label>
               <div style={styles.inputContainer}>
                 <Shield size={20} style={styles.inputIcon} />
                 <input
+                  id="confirmPassword-input"
                   type={showConfirmPassword ? 'text' : 'password'}
                   name="confirmPassword"
                   value={formData.confirmPassword}
@@ -565,9 +575,13 @@ const Register = () => {
                   placeholder="Confirm your password"
                   style={styles.input}
                 />
-                <div 
-                  onClick={() => setShowConfirmPassword(!showConfirmPassword)} 
+                <div
+                  onClick={() => setShowConfirmPassword(!showConfirmPassword)}
                   style={styles.eyeIcon}
+                  role="button"
+                  tabIndex={0}
+                  aria-label="Toggle confirm password visibility"
+                  onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') setShowConfirmPassword(!showConfirmPassword); }}
                 >
                   {showConfirmPassword ? <EyeOff size={20} /> : <Eye size={20} />}
                 </div>
@@ -585,7 +599,14 @@ const Register = () => {
             </button>
           </form>
 
-          <span style={styles.link} onClick={() => window.location.href = '/login'}>
+          <span
+            style={styles.link}
+            onClick={() => window.location.href = '/login'}
+            role="button"
+            tabIndex={0}
+            aria-label="Already have an account? Sign in"
+            onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') window.location.href = '/login'; }}
+          >
             Already have an account? Sign in
           </span>
         </div>
