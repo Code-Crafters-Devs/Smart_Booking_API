@@ -836,7 +836,7 @@ const HotelBookingDashboard = () => {
                         }}
                       />
                     </button>
-                    <div className="price-badge">${hotel.price}/night</div>
+                    <div className="price-badge">R{hotel.price}/night</div>
                   </div>
                   
                   <div className="hotel-details">
@@ -906,7 +906,7 @@ const HotelBookingDashboard = () => {
                 <div className="modal-header">
                   <h2 className="modal-hotel-name">{selectedHotel.name}</h2>
                   <div className="modal-price">
-                    <div className="modal-price-amount">${selectedHotel.price}</div>
+                    <div className="modal-price-amount">R{selectedHotel.price}</div>
                     <div className="modal-price-text">per night</div>
                   </div>
                 </div>
