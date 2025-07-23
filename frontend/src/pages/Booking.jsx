@@ -1,6 +1,6 @@
-import React from 'react';
-import BookingForm from '../components/booking/BookingForm';
-import BookingList from '../components/booking/BookingList';
+import React from 'react'; import BookingForm from '../components/booking/BookingForm';
+import BookingList from '../components/booking/BookingList'; 
+
 
 const Booking = () => {
     return (
@@ -12,4 +12,4 @@ const Booking = () => {
     );
 };
 
-export default Booking;
+export default Booking; 

@@ -1,11 +1,11 @@
 import React from 'react';
-import Admin from './pages/Admin.jsx';
+import Admin from './pages/Booking.jsx';
 
 
 function App() {
   return (
     <div>
-      <Admin />
+      <Booking />
     </div>
   );
 }
