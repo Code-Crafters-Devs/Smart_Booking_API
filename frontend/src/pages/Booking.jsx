@@ -476,15 +476,21 @@ const BookingPage = () => {
       
       {/* Header */}
       <header style={styles.header}>
-        <button 
-          style={styles.backButton} 
-          onClick={() => history.goBack()}
-          className="back-button"
-        >
-          <ChevronLeft size={20} />
-          Back
-        </button>
-        <div style={styles.logo}>HotelSmart</div>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '16px', flex: 1 }}>
+          <button 
+            style={styles.backButton} 
+            onClick={() => history.goBack()}
+            className="back-button"
+          >
+            <ChevronLeft size={20} />
+            Back
+          </button>
+          <div style={styles.logo}>HotelSmart</div>
+        </div>
+        <nav style={{ position: 'absolute', left: '50%', top: '50%', transform: 'translate(-50%, -50%)', display: 'flex', gap: '32px', alignItems: 'center' }}>
+          <a href="#rooms" style={{ color: 'white', textDecoration: 'none', fontWeight: 500, fontSize: 16 }}>Rooms</a>
+          <a href="#amenities" style={{ color: 'white', textDecoration: 'none', fontWeight: 500, fontSize: 16 }}>Amenities</a>
+        </nav>
         <div style={{ width: '100px' }}></div> {/* Spacer */}
       </header>
 
