@@ -33,9 +33,10 @@ const Login = () => {
     const token = 'dummy-token';
     localStorage.setItem('token', token);
     localStorage.setItem('user', JSON.stringify(user));
-    if (user.role.toLowerCase() === 'admin') history.push('/admin');
-    else if (user.role.toLowerCase() === 'provider') history.push('/provider');
-    else if (user.role.toLowerCase() === 'guest') history.push('/home');
+    const role = (user.role || '').toLowerCase();
+    if (role === 'admin') history.push('/admin');
+    else if (role === 'provider') history.push('/provider');
+    else if (role === 'guest') history.push('/home');
     else history.push('/');
   };
 
@@ -92,7 +93,8 @@ const Login = () => {
     logo: {
       display: 'flex',
       alignItems: 'center',
-      gap: '8px'
+      gap: '8px',
+      cursor: 'pointer'
     },
     logoIcon: {
       width: '40px',
@@ -323,7 +325,7 @@ const Login = () => {
         <style>{keyframes}</style>
         <header style={styles.header}>
           <div style={styles.headerContent}>
-            <div style={styles.logo}>
+            <div style={styles.logo} onClick={() => history.push('/')} role="button" tabIndex={0} aria-label="Go to homepage" onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') history.push('/'); }}>
               <div style={styles.logoIcon}>
                 <span>H</span>
               </div>
@@ -433,7 +435,7 @@ const Login = () => {
       <style>{keyframes}</style>
       <header style={styles.header}>
         <div style={styles.headerContent}>
-          <div style={styles.logo}>
+          <div style={styles.logo} onClick={() => history.push('/')} role="button" tabIndex={0} aria-label="Go to homepage" onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') history.push('/'); }}>
             <div style={styles.logoIcon}>
               <span>H</span>
             </div>
