@@ -20,52 +20,23 @@ const Login = () => {
     if (errors[name]) setErrors(prev => ({ ...prev, [name]: '' }));
   };
 
-  const validateForm = () => {
-    const newErrors = {};
-    if (!formData.email) newErrors.email = 'Email is required';
-    else if (!/\S+@\S+\.\S+/.test(formData.email)) newErrors.email = 'Please enter a valid email';
-    if (!formData.password) newErrors.password = 'Password is required';
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
-  };
-
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    if (validateForm()) {
-      try {
-        const response = await fetch(`${process.env.REACT_APP_API_URL.replace(/\/$/, '')}/auth/login`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            email: formData.email,
-            password: formData.password
-          })
-        });
-        if (response.ok) {
-          const data = await response.json();
-          // Decode JWT to get role_id (or fetch user info if needed)
-          const token = data.token;
-          // Save token if needed: localStorage.setItem('token', token);
-          // Decode token to get role_id
-          const payload = JSON.parse(atob(token.split('.')[1]));
-          const roleId = payload.role_id;
-          // Map role_id to role name
-          let role = 'Guest';
-          if (roleId === 1) role = 'Provider';
-          else if (roleId === 2) role = 'Guest';
-          else if (roleId === 3) role = 'Admin';
-          // Redirect based on role
-          if (role === 'Admin') history.push('/admin');
-          else if (role === 'Provider') history.push('/provider');
-          else history.push('/home');
-        } else {
-          const data = await response.json();
-          alert(data.error || 'Login failed');
-        }
-      } catch (err) {
-        alert('Network error. Please try again.');
-      }
-    }
+    // Simulate login and redirect based on role without backend
+    const user = {
+      id: 1,
+      first_name: 'Demo',
+      last_name: 'User',
+      email: formData.email || 'demo@example.com',
+      role: formData.role || 'Guest'
+    };
+    const token = 'dummy-token';
+    localStorage.setItem('token', token);
+    localStorage.setItem('user', JSON.stringify(user));
+    if (user.role.toLowerCase() === 'admin') history.push('/admin');
+    else if (user.role.toLowerCase() === 'provider') history.push('/provider');
+    else if (user.role.toLowerCase() === 'guest') history.push('/home');
+    else history.push('/');
   };
 
   const handleForgotPassword = (e) => {
@@ -426,10 +397,11 @@ const Login = () => {
 
             <form onSubmit={handleForgotPassword}>
               <div style={styles.inputGroup}>
-                <label style={{ display: 'block', marginBottom: '8px', fontSize: '14px', fontWeight: '500' }}>Email Address</label>
+                <label htmlFor="forgot-email-input" style={{ display: 'block', marginBottom: '8px', fontSize: '14px', fontWeight: '500' }}>Email Address</label>
                 <div style={styles.inputContainer}>
                   <Mail size={20} style={styles.inputIcon} />
                   <input
+                    id="forgot-email-input"
                     type="email"
                     name="email"
                     value={formData.email}
@@ -520,48 +492,18 @@ const Login = () => {
           <form onSubmit={handleSubmit}>
             <div style={styles.inputGroup}>
               <label htmlFor="role-select" style={{ display: 'block', marginBottom: '8px', fontSize: '14px', fontWeight: '500' }}>Role</label>
-              <div style={styles.inputContainer}>
-                <svg
-                  style={styles.inputIcon}
-                  viewBox="0 0 24 24"
-                  width="20"
-                  height="20"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                >
-                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-                </svg>
-                <select
-                  id="role-select"
-                  name="role"
-                  value={formData.role}
-                  onChange={handleInputChange}
-                  style={styles.select}
-                >
-                  <option value="Guest">Guest</option>
-                  <option value="Provider">Provider</option>
-                  <option value="Guest">Admin</option>
-                </select>
-                <svg
-                  style={{
-                    position: 'absolute',
-                    right: '16px',
-                    top: '50%',
-                    transform: 'translateY(-50%)',
-                    pointerEvents: 'none',
-                    color: 'rgba(255, 255, 255, 0.7)'
-                  }}
-                  viewBox="0 0 24 24"
-                  width="20"
-                  height="20"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                >
-                  <path d="M6 9l6 6 6-6" />
-                </svg>
-              </div>
+              <select
+                id="role-select"
+                name="role"
+                value={formData.role}
+                onChange={handleInputChange}
+                style={styles.select}
+                aria-label="Select your role"
+              >
+                <option value="Guest">Guest</option>
+                <option value="Provider">Provider</option>
+                <option value="Admin">Admin</option>
+              </select>
             </div>
 
             <div style={styles.inputGroup}>
@@ -617,6 +559,10 @@ const Login = () => {
                 </div>
               )}
             </div>
+
+            {errors.form && (
+              <div style={{ color: '#ef4444', marginBottom: '10px', textAlign: 'center' }}>{errors.form}</div>
+            )}
 
             <button type="submit" style={styles.submitBtn}>
               Sign In

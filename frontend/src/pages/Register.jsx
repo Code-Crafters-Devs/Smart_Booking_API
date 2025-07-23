@@ -68,7 +68,11 @@ const Register = () => {
           history.push('/login');
         } else {
           const data = await response.json();
-          alert(data.error || 'Registration failed');
+          if (response.status === 409 && data.error === 'Email already exists') {
+            setErrors(prev => ({ ...prev, email: 'Email already exists' }));
+          } else {
+            alert(data.error || 'Registration failed');
+          }
         }
       } catch (err) {
         alert('Network error. Please try again.');

@@ -14,12 +14,12 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: 'user_id',
       as: 'user'
     });
-    Guest.hasMany(models.Booking, {
-      foreignKey: 'guest_id'
-    });
-    Guest.hasMany(models.Review, {
-      foreignKey: 'guest_id'
-    });
+    // Guest.hasMany(models.Booking, {
+    //   foreignKey: 'guest_id'
+    // });
+    // Guest.hasMany(models.Review, {
+    //   foreignKey: 'guest_id'
+    // });
   };
 
   return Guest;
