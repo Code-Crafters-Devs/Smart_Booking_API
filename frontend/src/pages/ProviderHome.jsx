@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import '../assets/styles/ProviderHome.css';
 
 const ProviderHome = () => {
   const [activeTab, setActiveTab] = useState('dashboard');
+  const history = useHistory();
 
   const renderContent = () => {
     switch (activeTab) {
@@ -118,7 +120,12 @@ const ProviderHome = () => {
             <li onClick={() => setActiveTab('rooms')} className={activeTab === 'rooms' ? 'active' : ''}>Manage Rooms</li>
             <li onClick={() => setActiveTab('reports')} className={activeTab === 'reports' ? 'active' : ''}>Reports</li>
             <li onClick={() => setActiveTab('settings')} className={activeTab === 'settings' ? 'active' : ''}>Settings</li>
-            <li onClick={() => console.log('Logout clicked')} className="logout-button">Logout</li>
+            <li>
+              <button type="button" onClick={() => {
+                // Optionally clear session/localStorage here
+                history.push('/login');
+              }} className="logout-button">Logout</button>
+            </li>
           </ul>
         </nav>
       </aside>

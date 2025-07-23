@@ -92,7 +92,8 @@ const Login = () => {
     logo: {
       display: 'flex',
       alignItems: 'center',
-      gap: '8px'
+      gap: '8px',
+      cursor: 'pointer'
     },
     logoIcon: {
       width: '40px',
@@ -323,7 +324,7 @@ const Login = () => {
         <style>{keyframes}</style>
         <header style={styles.header}>
           <div style={styles.headerContent}>
-            <div style={styles.logo}>
+            <div style={styles.logo} onClick={() => history.push('/')} role="button" tabIndex={0} aria-label="Go to homepage" onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') history.push('/'); }}>
               <div style={styles.logoIcon}>
                 <span>H</span>
               </div>
@@ -433,7 +434,7 @@ const Login = () => {
       <style>{keyframes}</style>
       <header style={styles.header}>
         <div style={styles.headerContent}>
-          <div style={styles.logo}>
+          <div style={styles.logo} onClick={() => history.push('/')} role="button" tabIndex={0} aria-label="Go to homepage" onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') history.push('/'); }}>
             <div style={styles.logoIcon}>
               <span>H</span>
             </div>
