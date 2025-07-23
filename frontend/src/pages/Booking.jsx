@@ -24,7 +24,7 @@ const BookingPage = () => {
   const hotel = {
     id: 1,
     name: 'Grand Luxury Hotel',
-    location: 'New York, USA',
+    location: 'Pretoria, RSA',
     rating: 4.9,
     reviews: 1248,
     description: 'Experience unparalleled luxury in the heart of the city. Our award-winning hotel offers stunning views, world-class amenities, and exceptional service.',
@@ -98,13 +98,21 @@ const BookingPage = () => {
     }
   };
 
-  // Ref for amenities section
+  // Refs for amenities and rooms sections
   const amenitiesRef = React.useRef(null);
+  const roomsRef = React.useRef(null);
 
   const handleAmenitiesClick = (e) => {
     e.preventDefault();
     if (amenitiesRef.current) {
       amenitiesRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  const handleRoomsClick = (e) => {
+    e.preventDefault();
+    if (roomsRef.current) {
+      roomsRef.current.scrollIntoView({ behavior: 'smooth' });
     }
   };
 
@@ -498,7 +506,13 @@ const BookingPage = () => {
           <div style={styles.logo}>HotelSmart</div>
         </div>
         <nav style={{ position: 'absolute', left: '50%', top: '50%', transform: 'translate(-50%, -50%)', display: 'flex', gap: '32px', alignItems: 'center' }}>
-          <a href="#rooms" style={{ color: 'white', textDecoration: 'none', fontWeight: 500, fontSize: 16 }}>Rooms</a>
+          <a 
+            href="#rooms" 
+            style={{ color: 'white', textDecoration: 'none', fontWeight: 500, fontSize: 16 }}
+            onClick={handleRoomsClick}
+          >
+            Rooms
+          </a>
           <a 
             href="#amenities" 
             style={{ color: 'white', textDecoration: 'none', fontWeight: 500, fontSize: 16 }}
@@ -513,7 +527,7 @@ const BookingPage = () => {
       {/* Main Content */}
       <div style={styles.content} className="content">
         {/* Hotel Details */}
-        <div>
+        <div ref={roomsRef}>
           {/* Image Gallery */}
           <div style={styles.hotelImages} className="hotel-images">
             <img 
