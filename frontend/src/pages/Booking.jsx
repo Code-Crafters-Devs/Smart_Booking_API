@@ -98,6 +98,16 @@ const BookingPage = () => {
     }
   };
 
+  // Ref for amenities section
+  const amenitiesRef = React.useRef(null);
+
+  const handleAmenitiesClick = (e) => {
+    e.preventDefault();
+    if (amenitiesRef.current) {
+      amenitiesRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   const styles = {
     container: {
       minHeight: '100vh',
@@ -489,7 +499,13 @@ const BookingPage = () => {
         </div>
         <nav style={{ position: 'absolute', left: '50%', top: '50%', transform: 'translate(-50%, -50%)', display: 'flex', gap: '32px', alignItems: 'center' }}>
           <a href="#rooms" style={{ color: 'white', textDecoration: 'none', fontWeight: 500, fontSize: 16 }}>Rooms</a>
-          <a href="#amenities" style={{ color: 'white', textDecoration: 'none', fontWeight: 500, fontSize: 16 }}>Amenities</a>
+          <a 
+            href="#amenities" 
+            style={{ color: 'white', textDecoration: 'none', fontWeight: 500, fontSize: 16 }}
+            onClick={handleAmenitiesClick}
+          >
+            Amenities
+          </a>
         </nav>
         <div style={{ width: '100px' }}></div> {/* Spacer */}
       </header>
@@ -558,7 +574,7 @@ const BookingPage = () => {
 
             <p style={styles.hotelDescription}>{hotel.description}</p>
 
-            <h3 style={styles.amenitiesTitle}>Amenities</h3>
+            <h3 style={styles.amenitiesTitle} ref={amenitiesRef}>Amenities</h3>
             <div style={styles.amenitiesGrid}>
               {hotel.amenities.map((amenity, index) => (
                 <div key={index} style={styles.amenityItem}>
