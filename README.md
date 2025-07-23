@@ -122,7 +122,7 @@ Role: Customer
 | 👨‍💻 **Masingita Maluleke** | Full-stack Developer | Full-stack development, Architecture | [@masingita](https://github.com/masingita) |
 | 🎨 **Khulekani Mtshali** | UI/UX Designer | API design, User experience | [@Khulekani](https://github.com/Mkhulekani?tab=repositories) |
 | 🗄️ **Luyanda Xhakaza** | Backend & Database Engineer | Backend development, Database optimization, Migrations | [@luyandaaaa](https://github.com/luyandaaaa) |
-| 🧪 **Dembe Mkhari** | QA Engineer | Testing, Quality assurance | [@michaelbrown](https://github.com/michaelbrown) |
+| 🧪 **Dembe Mkhari** | QA Engineer | Testing, Quality assurance | [@DembeMakharii](https://github.com/DembeMakharii) |
 | 🤖 **Arise Dzamukeri** | AI Integration Specialist | NLP features, GPT-4 integration | [@lisadavis](https://github.com/lisadavis) |
 | 🚀 **Matimu Baloyi** | DevOps Engineer | CI/CD, Deployment, Monitoring | [@MatimuBaloyi](https://github.com/MatimuBaloyi) |
 
