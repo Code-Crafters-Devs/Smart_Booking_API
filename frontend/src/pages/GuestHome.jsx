@@ -21,7 +21,7 @@ const HotelBookingDashboard = () => {
           { 
             id: 1, 
             name: "Luxe Urban Retreat", 
-            location: "Downtown Manhattan, NYC", 
+            location: "Pretoria, RSA", 
             price: 440, 
             rating: 4.9, 
             reviews: 1249, 
