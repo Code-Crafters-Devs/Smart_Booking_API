@@ -119,9 +119,9 @@ Role: Customer
 
 | Member | Role | Responsibilities | Contact |
 |:---:|:---:|:---:|:---:|
-| 👨‍💻 **Masingita Maluleke** | Lead Developer | Full-stack development, Architecture | [@masingita](https://github.com/masingita) |
+| 👨‍💻 **Masingita Maluleke** | Full-stack Developer | Full-stack development, Architecture | [@masingita](https://github.com/masingita) |
 | 🎨 **Khulekani Mtshali** | UI/UX Designer | API design, User experience | [@Khulekani](https://github.com/Mkhulekani?tab=repositories) |
-| 🗄️ **Luyanda Xhakaza** | Database Engineer | Database optimization, Migrations | [@sarahchen](https://github.com/sarahchen) |
+| 🗄️ **Luyanda Xhakaza** | Backend & Database Engineer | Backend development, Database optimization, Migrations | [@luyandaaaa](https://github.com/luyandaaaa) |
 | 🧪 **Dembe Mkhari** | QA Engineer | Testing, Quality assurance | [@michaelbrown](https://github.com/michaelbrown) |
 | 🤖 **Arise Dzamukeri** | AI Integration Specialist | NLP features, GPT-4 integration | [@lisadavis](https://github.com/lisadavis) |
 | 🚀 **Matimu Baloyi** | DevOps Engineer | CI/CD, Deployment, Monitoring | [@MatimuBaloyi](https://github.com/MatimuBaloyi) |
