@@ -19,6 +19,7 @@ const BookingPage = () => {
   });
   const [isLoading, setIsLoading] = useState(false);
   const [bookingSuccess, setBookingSuccess] = useState(false);
+  const [bookingError, setBookingError] = useState(null);
 
   // Sample hotel data - in a real app this would come from API/state
   const hotel = {
@@ -28,7 +29,7 @@ const BookingPage = () => {
     rating: 4.9,
     reviews: 1248,
     description: 'Experience unparalleled luxury in the heart of the city. Our award-winning hotel offers stunning views, world-class amenities, and exceptional service.',
-    price: 1500,
+    price: 900,
     images: [
       'https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',
       'https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',
@@ -66,15 +67,40 @@ const BookingPage = () => {
     setCardDetails(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmitBooking = (e) => {
+  const handleSubmitBooking = async (e) => {
     e.preventDefault();
     setIsLoading(true);
-    
-    // Simulate API call
-    setTimeout(() => {
-      setIsLoading(false);
+    setBookingError(null);
+
+    // Collect booking data
+    const bookingData = {
+      hotelId: hotel.id,
+      hotelName: hotel.name,
+      checkInDate,
+      checkOutDate,
+      guests,
+      specialRequests,
+      paymentMethod,
+      cardDetails: paymentMethod === 'credit' ? cardDetails : undefined,
+      total: calculateTotal(),
+      bookedAt: new Date().toISOString(),
+    };
+
+    try {
+      const response = await fetch('/api/bookings', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(bookingData),
+      });
+      if (!response.ok) {
+        throw new Error('Booking failed. Please try again.');
+      }
       setBookingSuccess(true);
-    }, 2000);
+    } catch (error) {
+      setBookingError(error.message || 'Booking failed.');
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const calculateTotal = () => {
@@ -503,7 +529,7 @@ const BookingPage = () => {
             <ChevronLeft size={20} />
             Back
           </button>
-          <div style={styles.logo}>HotelSmart</div>
+          <div style={styles.logo}>HotelLux</div>
         </div>
         <nav style={{ position: 'absolute', left: '50%', top: '50%', transform: 'translate(-50%, -50%)', display: 'flex', gap: '32px', alignItems: 'center' }}>
           <a 
@@ -614,6 +640,8 @@ const BookingPage = () => {
                 <button 
                   style={{ ...styles.actionButton, ...styles.secondaryButton }}
                   onClick={() => history.push('/')}
+                  type="button"
+                  aria-label="Back to Home Page"
                 >
                   <ChevronLeft size={16} />
                   Back Home
@@ -628,6 +656,11 @@ const BookingPage = () => {
             </div>
           ) : (
             <>
+              {bookingError && (
+                <div style={{ color: '#f87171', background: 'rgba(239,68,68,0.08)', border: '1px solid #f87171', borderRadius: 8, padding: 12, marginBottom: 16 }}>
+                  {bookingError}
+                </div>
+              )}
               <h2 style={styles.formTitle}>
                 <Calendar size={20} />
                 Book Your Stay
