@@ -705,46 +705,46 @@ const GuestHome = () => {
           <div className="header-content">
             <div className="logo">
               <div className="logo-icon">H</div>
-              <h1 className="app-title">HotelLux</h1>
+              <h1 className="app-title">HotelSmart</h1>
             </div>
             <div className="user-section">
               <div className="welcome-text">
                 Welcome back, <span>Sarah</span>
               </div>
               <button
-                className="signout-btn"
-                style={{
-                  marginLeft: '8px',
-                  padding: '6px 18px',
-                  border: '1.5px solid #44b9efff',
-                  background: 'white',
-                  color: '#44bfefff',
-                  borderRadius: '6px',
-                  fontWeight: 500,
-                  fontSize: '14px',
-                  cursor: 'pointer',
-                  transition: 'background 0.2s, color 0.2s, border 0.2s'
-                }}
-                onMouseOver={e => {
-                  e.target.style.background = 'rgba(68, 185, 239, 1)';
-                  e.target.style.color = 'white';
-                }}
-                onFocus={e => {
-                  e.target.style.background = 'rgba(68, 185, 239, 1)';
-                  e.target.style.color = 'white';
-                }}
-                onMouseOut={e => {
-                  e.target.style.background = 'white';
-                  e.target.style.color = 'rgba(68, 185, 239, 1)';
-                }}
-                onBlur={e => {
-                  e.target.style.background = 'white';
-                  e.target.style.color = 'rgba(68, 185, 239, 1)';
-                }}
-                onClick={() => alert('Signed out!')}
-              >
-                Sign Out
-              </button>
+                            className="signout-btn"
+                            style={{
+                                marginLeft: '8px',
+                                padding: '6px 18px',
+                                border: '1.5px solid #44b9efff',
+                                background: 'white',
+                                color: '#44bfefff',
+                                borderRadius: '6px',
+                                fontWeight: 500,
+                                fontSize: '14px',
+                                cursor: 'pointer',
+                                transition: 'background 0.2s, color 0.2s, border 0.2s'
+                            }}
+                            onMouseOver={e => {
+                                e.target.style.background = 'rgba(68, 185, 239, 1)';
+                                e.target.style.color = 'white';
+                            }}
+                            onFocus={e => {
+                                e.target.style.background = 'rgba(68, 185, 239, 1)';
+                                e.target.style.color = 'white';
+                            }}
+                            onMouseOut={e => {
+                                e.target.style.background = 'white';
+                                e.target.style.color = 'rgba(68, 185, 239, 1)';
+                            }}
+                            onBlur={e => {
+                                e.target.style.background = 'white';
+                                e.target.style.color = 'rgba(68, 185, 239, 1)';
+                            }}
+                            onClick={() => window.location.href = '/login'}
+                        >
+                            Sign Out
+                        </button>
             </div>
           </div>
         </header>
