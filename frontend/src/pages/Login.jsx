@@ -33,9 +33,10 @@ const Login = () => {
     const token = 'dummy-token';
     localStorage.setItem('token', token);
     localStorage.setItem('user', JSON.stringify(user));
-    if (user.role.toLowerCase() === 'admin') history.push('/admin');
-    else if (user.role.toLowerCase() === 'provider') history.push('/provider');
-    else if (user.role.toLowerCase() === 'guest') history.push('/home');
+    const role = (user.role || '').toLowerCase();
+    if (role === 'admin') history.push('/admin');
+    else if (role === 'provider') history.push('/provider');
+    else if (role === 'guest') history.push('/home');
     else history.push('/');
   };
 
