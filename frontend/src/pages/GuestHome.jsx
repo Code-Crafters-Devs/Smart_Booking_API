@@ -20,9 +20,9 @@ const HotelBookingDashboard = () => {
         const mockHotels = [
           { 
             id: 1, 
-            name: "Luxe Urban Retreat", 
+            name: "Grand Luxury Hotel", 
             location: "Pretoria, RSA", 
-            price: 440, 
+            price: 900, 
             rating: 4.9, 
             reviews: 1249, 
             image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=400&h=300&fit=crop", 
@@ -710,7 +710,7 @@ const HotelBookingDashboard = () => {
             </div>
             <div className="user-section">
               <div className="welcome-text">
-                Welcome back, <span>Sarah</span>
+                Welcome back <span></span>
               </div>
               <button
                 className="signout-btn"
@@ -801,7 +801,7 @@ const HotelBookingDashboard = () => {
                 <input
                   type="range"
                   min="0"
-                  max="1000"
+                  max="5000"
                   step="10"
                   value={priceRange[1]}
                   onChange={(e) => setPriceRange([priceRange[0], parseInt(e.target.value)])}
