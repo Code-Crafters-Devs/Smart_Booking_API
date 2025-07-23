@@ -701,6 +701,18 @@ const BookingPage = () => {
                     />
                     <label htmlFor="paypal">PayPal</label>
                   </div>
+                  <div style={styles.paymentOption}>
+                    <input
+                      type="radio"
+                      id="cash"
+                      name="payment"
+                      value="cash"
+                      checked={paymentMethod === 'cash'}
+                      onChange={() => setPaymentMethod('cash')}
+                      style={styles.paymentInput}
+                    />
+                    <label htmlFor="cash">Cash</label>
+                  </div>
                 </fieldset>
 
                 {paymentMethod === 'credit' && (
