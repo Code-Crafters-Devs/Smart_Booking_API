@@ -119,7 +119,7 @@ Role: Customer
 
 | Member | Role | Responsibilities | Contact |
 |:---:|:---:|:---:|:---:|
-| 👨‍💻 **Masingita Maluleke** | Full-stack Developer | Full-stack development, Architecture | [@masingita](https://github.com/masingita) |
+| 👨‍💻 **Masingita Maluleke** | Full-stack Developer | Full-stack development, Architecture | [@Tinyu01](https://github.com/Tinyu01) |
 | 🎨 **Khulekani Mtshali** | UI/UX Designer | API design, User experience | [@Khulekani](https://github.com/Mkhulekani?tab=repositories) |
 | 🗄️ **Luyanda Xhakaza** | Backend & Database Engineer | Backend development, Database optimization, Migrations | [@luyandaaaa](https://github.com/luyandaaaa) |
 | 🧪 **Dembe Mkhari** | QA Engineer | Testing, Quality assurance | [@DembeMakharii](https://github.com/DembeMakharii) |
