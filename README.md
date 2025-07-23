@@ -124,7 +124,7 @@ Role: Customer
 | 🗄️ **Luyanda Xhakaza** | Database Engineer | Database optimization, Migrations | [@sarahchen](https://github.com/sarahchen) |
 | 🧪 **Dembe Mkhari** | QA Engineer | Testing, Quality assurance | [@michaelbrown](https://github.com/michaelbrown) |
 | 🤖 **Arise Dzamukeri** | AI Integration Specialist | NLP features, GPT-4 integration | [@lisadavis](https://github.com/lisadavis) |
-| 🚀 **Matimu Baloyi** | DevOps Engineer | CI/CD, Deployment, Monitoring | [@jameswilson](https://github.com/jameswilson) |
+| 🚀 **Matimu Baloyi** | DevOps Engineer | CI/CD, Deployment, Monitoring | [@MatimuBaloyi](https://github.com/MatimuBaloyi) |
 
 </div>
 
