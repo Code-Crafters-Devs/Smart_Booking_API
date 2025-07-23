@@ -1,12 +1,12 @@
 import React from 'react';
-import Admin from './pages/Booking.jsx';
-
+import Booking from './pages/Booking.jsx';
+import { BrowserRouter } from 'react-router-dom';
 
 function App() {
   return (
-    <div>
+    <BrowserRouter>
       <Booking />
-    </div>
+    </BrowserRouter>
   );
 }
 
